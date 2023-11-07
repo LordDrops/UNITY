@@ -18,7 +18,7 @@ public class CardDisplay : MonoBehaviour
     public Text CostBlack;
     public Text CostWhite;
 
-    public Text Benefit;
+    public Image BenefitIcon;
 
 
 
@@ -33,9 +33,28 @@ public class CardDisplay : MonoBehaviour
         CostWhite.text=card.CostWhite.ToString();
         CostRed.text=card.CostRed.ToString();   
         CostBlue.text=card.CostBlue.ToString();
-        CostGreen.text=card.CostGreen.ToString();   
+        CostGreen.text=card.CostGreen.ToString();
 
+        switch(card.Benefit)
+        { 
+            case ENUM_Benefit.Black:
+               // BenefitIcon.sprite=
+                break;
 
+            case ENUM_Benefit.White:
+                break;
+
+            case ENUM_Benefit.Red:
+                break;
+
+            case ENUM_Benefit.Blue:
+                break;
+
+            case ENUM_Benefit.Green:
+                break;
+
+        }
+            
 
     }
 }

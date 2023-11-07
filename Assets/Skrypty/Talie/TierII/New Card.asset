@@ -10,19 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f2b1c22441ceba4cb4d27d5e7d3b172, type: 3}
-  m_Name: KARTA TEST 2
+  m_Name: New Card
   m_EditorClassIdentifier: 
-  Tier: 0
-  artwork: {fileID: 21300000, guid: d62d7b23797be0448b6da60edae14ece, type: 3}
-  ID: 0
+  Tier: 1
+  Benefit: 4
+  artwork: {fileID: 21300000, guid: f4d5afa04b0d6c84bb44cebbad3a386b, type: 3}
+  ID: 1
   Points: 2
-  CostBlack: 0
-  CostWhite: 1
+  CostBlack: 3
+  CostWhite: 0
   CostRed: 0
-  CostBlue: 3
-  CostGreen: 0
-  BenefitBlack: 0
-  BenefitWhite: 0
-  BenefitRed: 0
-  BenefitBlue: 0
-  BenefitGreen: 0
+  CostBlue: 0
+  CostGreen: 1
