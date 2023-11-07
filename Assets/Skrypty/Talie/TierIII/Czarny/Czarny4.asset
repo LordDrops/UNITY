@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f2b1c22441ceba4cb4d27d5e7d3b172, type: 3}
+  m_Name: Czarny4
+  m_EditorClassIdentifier: 
+  Tier: 0
+  Benefit: 0
+  artwork: {fileID: 21300000, guid: 2a8ead5e216efd44a8bf14ddca5da055, type: 3}
+  ID: 0
+  Points: 5
+  CostBlack: 3
+  CostWhite: 0
+  CostRed: 7
+  CostBlue: 0
+  CostGreen: 0
