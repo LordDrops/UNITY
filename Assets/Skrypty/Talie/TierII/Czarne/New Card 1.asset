@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tier: 1
   Benefit: 0
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 719cc238b8625c64388e97413199d303, type: 3}
   ID: 0
   Points: 1
   CostBlack: 2
