@@ -15,7 +15,7 @@ MonoBehaviour:
   Tier: 1
   Benefit: 3
   artwork: {fileID: 21300000, guid: 4e819d14b087d064d90530cfe20ca00b, type: 3}
-  ID: 0
+  ID: 60
   Points: 1
   CostBlack: 3
   CostWhite: 0
