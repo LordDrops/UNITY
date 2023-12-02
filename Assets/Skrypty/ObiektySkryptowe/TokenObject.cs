@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 [CreateAssetMenu (fileName ="New Token" , menuName ="Token")]
-public class Token : ScriptableObject
+public class TokenObject : ScriptableObject
 {
     ENUM_Tokens rodzaj;
     int value=1;

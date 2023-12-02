@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Arystokrata", menuName = "Arystokrata")]
-public class Arystokrata : ScriptableObject
+[CreateAssetMenu(fileName = "New aristocrat", menuName = "Aristocrat")]
+public class AristocratObject : ScriptableObject
 {
     public Sprite artwork;
     public int ID;
