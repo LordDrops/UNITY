@@ -5,8 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Arystokrata", menuName = "Arystokrata")]
 public class Arystokrata : ScriptableObject
 {
-
-
     public Sprite artwork;
     public int ID;
 
