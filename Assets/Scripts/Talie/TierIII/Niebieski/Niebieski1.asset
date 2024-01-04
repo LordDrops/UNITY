@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2b1c22441ceba4cb4d27d5e7d3b172, type: 3}
   m_Name: Niebieski1
   m_EditorClassIdentifier: 
-  Tier: 0
-  Benefit: 3
-  artwork: {fileID: 21300000, guid: 5212c181551583242a45a45dd6f91dc4, type: 3}
-  ID: 83
-  Points: 3
-  CostBlack: 5
-  CostWhite: 3
-  CostRed: 3
-  CostBlue: 0
-  CostGreen: 3
+  id: 0
+  tier: 0
+  benefit: 0
+  artwork: {fileID: 21300000, guid: 780e1da4e27fda440bd55574eac2dd0a, type: 3}
+  tokenSprite: {fileID: 0}
+  points: 0
+  costBlack: 0
+  costWhite: 0
+  costRed: 0
+  costBlue: 0
+  costGreen: 0

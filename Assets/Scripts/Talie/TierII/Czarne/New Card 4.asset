@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2b1c22441ceba4cb4d27d5e7d3b172, type: 3}
   m_Name: New Card 4
   m_EditorClassIdentifier: 
-  Tier: 1
-  Benefit: 0
-  artwork: {fileID: 21300000, guid: 719cc238b8625c64388e97413199d303, type: 3}
-  ID: 51
-  Points: 2
-  CostBlack: 0
-  CostWhite: 0
-  CostRed: 3
-  CostBlue: 0
-  CostGreen: 5
+  id: 0
+  tier: 0
+  benefit: 0
+  artwork: {fileID: 21300000, guid: 8da379041d4624844a78c475118846b6, type: 3}
+  tokenSprite: {fileID: 0}
+  points: 0
+  costBlack: 0
+  costWhite: 0
+  costRed: 0
+  costBlue: 0
+  costGreen: 0

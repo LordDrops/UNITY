@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2b1c22441ceba4cb4d27d5e7d3b172, type: 3}
   m_Name: Czerwony2
   m_EditorClassIdentifier: 
-  Tier: 0
-  Benefit: 2
-  artwork: {fileID: 21300000, guid: b65f6e5999e9cef45a850e419a6289fe, type: 3}
-  ID: 80
-  Points: 4
-  CostBlack: 0
-  CostWhite: 0
-  CostRed: 0
-  CostBlue: 0
-  CostGreen: 7
+  id: 0
+  tier: 0
+  benefit: 0
+  artwork: {fileID: 21300000, guid: e188a721d92b15b40ae8c4e3cdc93426, type: 3}
+  tokenSprite: {fileID: 0}
+  points: 0
+  costBlack: 0
+  costWhite: 0
+  costRed: 0
+  costBlue: 0
+  costGreen: 0
