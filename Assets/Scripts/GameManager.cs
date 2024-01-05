@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,15 +18,13 @@ public class GameManager : MonoBehaviour
     //Talie Arystokrat�w 
     public List<AristocratObject> PulaArystokratow = new List<AristocratObject>();
 
-
-
     //void change Player()
     //Void CheckWin()
     //linser dobrania karty 
 
     //public int GetCard()
 
-    
+
 }
 
 public enum GameStatus

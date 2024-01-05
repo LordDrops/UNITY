@@ -38,17 +38,15 @@ public class Card : MonoBehaviour
 
 
 
-
+    public void HideCard()
+    {
+        gameObject.SetActive(false);
+    }
 
     private void RenderCard()
     {
-        //TODO add sprite change
         artworkRender.sprite = artwork;
-        //TODO add token sprite change
-
         profitToken.sprite = tokenSprite;
-
-
 
         whiteCost.SetText(this.costWhite.ToString());
         blueCost.SetText(this.costBlue.ToString());
@@ -61,24 +59,28 @@ public class Card : MonoBehaviour
 
     public void LoadCard(CardObject cardObject)
     {
-        this.tier = cardObject.tier;
-        this.benefit = cardObject.benefit;
-        this.artwork = cardObject.artwork;
-        this.tokenSprite = cardObject.tokenSprite;
-        this.points = cardObject.points;
-        this.id = cardObject.id;
-        this.costBlack = cardObject.costBlack;
-        this.costWhite = cardObject.costWhite;
-        this.costRed = cardObject.costRed;
-        this.costBlue = cardObject.costBlue;
-        this.costGreen = cardObject.costGreen;
+        gameObject.SetActive(true);
+
+        this.cardObject = cardObject;
+
+        tier = cardObject.tier;
+        benefit = cardObject.benefit;
+        artwork = cardObject.artwork;
+        tokenSprite = cardObject.tokenSprite;
+        points = cardObject.points;
+        id = cardObject.id;
+        costBlack = cardObject.costBlack;
+        costWhite = cardObject.costWhite;
+        costRed = cardObject.costRed;
+        costBlue = cardObject.costBlue;
+        costGreen = cardObject.costGreen;
 
         RenderCard();
     }
 
 
 
-    private void OnEnable()
+    void Start()
     {
         // Objects to render
         artworkRender = transform.Find("Image").GetComponent<SpriteRenderer>();
@@ -94,7 +96,12 @@ public class Card : MonoBehaviour
         profitValue = transform.Find("Profit").gameObject.GetComponent<TextMeshPro>();
         profitToken = transform.Find("Profit").transform.Find("Token").gameObject.GetComponent<SpriteRenderer>();
 
-        LoadCard(cardObject);
+        gameObject.SetActive(false);
+    }
+
+    public CardObject GetCardObject()
+    {
+        return cardObject;
     }
 }
 
