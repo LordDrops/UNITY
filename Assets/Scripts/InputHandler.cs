@@ -28,7 +28,10 @@ public class InputHandler : MonoBehaviour
             return;
         }
 
-        zoomCard.LoadCard(rayHit.collider.GetComponent<Card>().GetCardObject());
+        Card clickedCard = rayHit.collider.GetComponent<Card>();
 
+        zoomCard.LoadCard(clickedCard.GetCardObject());
+
+        clickedCard.ToggleActions();
     }
 }

@@ -35,12 +35,6 @@ public class TableSetup : MonoBehaviour
         SetCardsRows();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private CardObject DrawCardFromDeck(List<CardObject> deck)
     {
         int cardIndex = Random.Range(0, deck.Count);

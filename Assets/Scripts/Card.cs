@@ -36,11 +36,28 @@ public class Card : MonoBehaviour
     private TextMeshPro profitValue;
     private SpriteRenderer profitToken;
 
+    [SerializeField]
+    private GameObject actionLayer;
 
+    private bool actionsActive = false;
+
+
+    public CardObject GetCardObject()
+    {
+        return cardObject;
+    }
 
     public void HideCard()
     {
         gameObject.SetActive(false);
+        actionLayer.SetActive(false);
+    }
+
+    public void ToggleActions()
+    {
+        actionsActive = !actionsActive;
+        
+        actionLayer.SetActive(actionsActive);
     }
 
     private void RenderCard()
@@ -97,11 +114,6 @@ public class Card : MonoBehaviour
         profitToken = transform.Find("Profit").transform.Find("Token").gameObject.GetComponent<SpriteRenderer>();
 
         gameObject.SetActive(false);
-    }
-
-    public CardObject GetCardObject()
-    {
-        return cardObject;
     }
 }
 
