@@ -63,6 +63,10 @@ public class TableSetup : MonoBehaviour
             card.GetComponent<Card>().LoadCard(DrawCardFromDeck(deckTier3));
         }
 
+        foreach (Transform card in tableCardsAristocrats.transform)
+        {
+            card.GetComponent<Card>().LoadCard(DrawCardFromDeck(deckAristocrats));
+        }
         //TODO Add aristocrats
     }
 }

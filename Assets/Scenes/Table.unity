@@ -849,7 +849,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 370b9ab4a2395d3428e1e822a43ead24, type: 2}
   - {fileID: 11400000, guid: a634a103b40179a4b82d8dbd46499587, type: 2}
   - {fileID: 11400000, guid: 29e3a5185e24a124bbf91fc368fdc3ca, type: 2}
-  deckAristocrats: []
+  deckAristocrats:
+  - {fileID: 11400000, guid: 7e5d99bf291e4e146b52e5b8b2d395b3, type: 2}
+  - {fileID: 11400000, guid: 66dfae86c6a946e4aad56d1bd3b127cf, type: 2}
+  - {fileID: 11400000, guid: b3d5e5e14c5a312408346c9411e49493, type: 2}
+  - {fileID: 11400000, guid: 3639bb3de1aa2d648bf62da85b9a3d44, type: 2}
+  - {fileID: 11400000, guid: ff2fc51e1a404c349b3dfd213898cb96, type: 2}
+  - {fileID: 11400000, guid: 3b078f5e411449146adf5ba4a0df2888, type: 2}
+  - {fileID: 11400000, guid: e3b4695b409ec4747bc51be685270189, type: 2}
+  - {fileID: 11400000, guid: c5b75a7965ed4bd47b11aa5f56caf2f9, type: 2}
+  - {fileID: 11400000, guid: 03c28cea92eb3ad45b15b504b6b8ca6e, type: 2}
+  - {fileID: 11400000, guid: 84523d92d78c409458bf3e9397640f8a, type: 2}
   tableCardsTier1: {fileID: 1805253607}
   tableCardsTier2: {fileID: 408094223}
   tableCardsTier3: {fileID: 1458510163}

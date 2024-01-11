@@ -71,14 +71,47 @@ public class Card : MonoBehaviour
     {
         artworkRender.sprite = artwork;
         profitToken.sprite = tokenSprite;
-
+        if(this.costWhite > 0){//WHITE
         whiteCost.SetText(this.costWhite.ToString());
+        }
+        else{
+            whiteCost.gameObject.SetActive(false);
+        }
+    //BLUE 
+        if(this.costBlue > 0){
         blueCost.SetText(this.costBlue.ToString());
+        }
+        else{
+            blueCost.gameObject.SetActive(false);
+        }
+    //GREEN
+        if(this.costGreen > 0){
         greenCost.SetText(this.costGreen.ToString());
+        }
+        else{
+            greenCost.gameObject.SetActive(false);
+        }
+    //RED
+        if(this.costRed > 0){
         redCost.SetText(this.costRed.ToString());
+        }
+        else{
+            redCost.gameObject.SetActive(false);
+        }
+    //Black
+        if(this.costBlack > 0){
         blackCost.SetText(this.costBlack.ToString());
-
+        }
+        else{
+            blackCost.gameObject.SetActive(false);
+        }
+        if(this.points > 0){
         profitValue.SetText(this.points.ToString());
+        }
+        else{
+            Destroy(profitValue);
+        }
+
     }
 
     public void LoadCard(CardObject cardObject)
