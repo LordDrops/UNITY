@@ -4,26 +4,53 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int Pkty;
+    public int points;
 
-    public List<Card> PlayerDeck = new List<Card>();
+    [SerializeField]
+    private List<Card> playerDeck = new List<Card>();
 
-    public int BlackMine;
-    public int WhiteMine;
-    public int RedMine;
-    public int BlueMine;
-    public int GreenMine;
+    public int blackToken;
+    public int whiteToken;
+    public int redToken;
+    public int blueToken;
+    public int greenToken;
+    public int goldToken;
 
-
-    public int BlackToken;
-    public int WhiteToken;
-    public int RedToken;
-    public int BlueToken;
-    public int GreenToken;
-    public int GoldToken;
+    public int blackTokenPermanent;
+    public int whiteTokenPermanent;
+    public int redTokenPermanent;
+    public int blueTokenPermanent;
+    public int greenTokenPermanent;
+    public int goldTokenPermanent;
 
     public Card LockedCard;
 
+    public void BuyCard(Card card)
+    {
+        playerDeck.Add(card);
 
-    //void kup karte 
+        points += card.points;
+
+        switch(card.benefit)
+        {
+            case ENUM_Benefit.Black:
+                blackTokenPermanent += 1;
+                break;
+            case ENUM_Benefit.White:
+                whiteTokenPermanent += 1;
+                break;
+            case ENUM_Benefit.Red:
+                redTokenPermanent += 1;
+                break;
+            case ENUM_Benefit.Blue:
+                blueTokenPermanent += 1;
+                break;
+            case ENUM_Benefit.Green:
+                greenTokenPermanent += 1;
+                break;
+            case ENUM_Benefit.NULL:
+                break;
+        }
+    }
+    
 }

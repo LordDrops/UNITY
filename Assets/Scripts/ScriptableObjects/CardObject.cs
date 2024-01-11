@@ -21,6 +21,4 @@ public class CardObject : ScriptableObject
     public int costRed;
     public int costBlue;
     public int costGreen;
-    
-    //void draw Card()
 }

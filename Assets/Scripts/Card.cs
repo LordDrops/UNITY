@@ -124,6 +124,5 @@ public class Card : MonoBehaviour
 
 public enum ENUM_Benefit
 {
-    Black, White, Red, Blue, Green
-
+    NULL, Black, White, Red, Blue, Green
 }
