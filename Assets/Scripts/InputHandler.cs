@@ -36,18 +36,35 @@ public class InputHandler : MonoBehaviour
         if (!rayHit.collider)
         {
             HideLayers();
-           
+
             zoomCard.HideCard();
 
             return;
         }
 
-        HideLayers();
+        string tag = rayHit.collider.tag;
 
-        Card clickedCard = rayHit.collider.GetComponent<Card>();
+        Debug.Log(tag);
 
-        zoomCard.LoadCard(clickedCard.GetCardObject());
+        if (tag == "Card")
+        {
+            HideLayers();
 
-        clickedCard.ToggleActions();
+            Card clickedCard = rayHit.collider.GetComponent<Card>();
+
+            zoomCard.LoadCard(clickedCard.GetCardObject());
+
+            clickedCard.ToggleActions();
+        }
+        else if (tag == "Buy")
+        {
+            Card clickedCard = rayHit.collider.GetComponent<Card>();
+
+            // Get active player from game manager
+
+            // Temporary solution
+            Player player = GameObject.Find("Player").GetComponent<Player>();
+        }
+
     }
 }
