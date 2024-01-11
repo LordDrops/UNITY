@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 91
   tier: 4
-  benefit: 0
+  benefit: 5
   artwork: {fileID: 21300000, guid: 89a4846e8a6b1c541a341a8a4ff33149, type: 3}
   tokenSprite: {fileID: 0}
   points: 3
