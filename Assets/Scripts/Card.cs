@@ -53,6 +53,13 @@ public class Card : MonoBehaviour
         actionLayer.SetActive(false);
     }
 
+    public void HideActionsLayer()
+    {
+        actionsActive = false;
+
+        actionLayer.SetActive(actionsActive);
+    }
+
     public void ToggleActions()
     {
         actionsActive = !actionsActive;
@@ -94,8 +101,6 @@ public class Card : MonoBehaviour
 
         RenderCard();
     }
-
-
 
     void Start()
     {

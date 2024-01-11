@@ -9,11 +9,22 @@ public class InputHandler : MonoBehaviour
 
     private Card zoomCard;
 
+    [SerializeField]
+    private List<GameObject> tableCards;
+
     private void Awake()
     {
         mainCamera = Camera.main;
 
         zoomCard = GameObject.Find("Zoom Card").GetComponent<Card>();
+    }
+
+    private void HideLayers()
+    {
+        foreach (var card in tableCards)
+        {
+            card.GetComponent<Card>().HideActionsLayer();
+        }
     }
 
     public void OnClick(InputAction.CallbackContext context)
@@ -24,9 +35,14 @@ public class InputHandler : MonoBehaviour
 
         if (!rayHit.collider)
         {
+            HideLayers();
+           
             zoomCard.HideCard();
+
             return;
         }
+
+        HideLayers();
 
         Card clickedCard = rayHit.collider.GetComponent<Card>();
 
