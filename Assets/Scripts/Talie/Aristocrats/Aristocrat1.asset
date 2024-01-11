@@ -17,9 +17,9 @@ MonoBehaviour:
   benefit: 0
   artwork: {fileID: 21300000, guid: 164eb62d433cf374a91bece8ac4fbef0, type: 3}
   tokenSprite: {fileID: 0}
-  points: 0
+  points: 3
   costBlack: 0
-  costWhite: 0
+  costWhite: 3
   costRed: 0
-  costBlue: 0
-  costGreen: 0
+  costBlue: 3
+  costGreen: 3
