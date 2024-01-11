@@ -69,6 +69,12 @@ public class Card : MonoBehaviour
 
     private void RenderCard()
     {
+        whiteCost.gameObject.SetActive(true);
+        greenCost.gameObject.SetActive(true);
+        blackCost.gameObject.SetActive(true);
+        blueCost.gameObject.SetActive(true);
+        redCost.gameObject.SetActive(true);
+
         artworkRender.sprite = artwork;
         profitToken.sprite = tokenSprite;
         if(this.costWhite > 0){//WHITE
@@ -109,7 +115,7 @@ public class Card : MonoBehaviour
         profitValue.SetText(this.points.ToString());
         }
         else{
-            Destroy(profitValue);
+            profitValue.SetText("");
         }
 
     }
