@@ -3,7 +3,15 @@ guid: c80865a340430514eb949536ca8f5fe2
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - blackTokenSprite: {fileID: 21300000, guid: 5995b961535f38e45aeccecc900c68a7, type: 3}
+  - redTokenSprite: {fileID: 21300000, guid: 0d0bcf9c169f06c4ba835c999dff738f, type: 3}
+  - greenTokenSprite: {fileID: 21300000, guid: 3f195a111effdfd48af9361b49dae4cf, type: 3}
+  - blueTokenSprite: {fileID: 21300000, guid: aa55b53128921e042891905e46ec10b3, type: 3}
+  - whiteTokenSprite: {fileID: 21300000, guid: 74ce7897a735a0042b2f627dabde2857, type: 3}
+  - goldTokenSprite: {fileID: 21300000, guid: 451c38657651a224e9036baf2d42b17b, type: 3}
+  - LockedCard: {instanceID: 0}
+  - tokenPrefab: {fileID: 1127540195779577652, guid: ccc76cb4072368c44b9c1d907b96770e, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

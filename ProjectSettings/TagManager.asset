@@ -7,6 +7,15 @@ TagManager:
   - Card
   - Buy
   - Lock
+  - Zoom card
+  - Black
+  - Red
+  - Green
+  - Blue
+  - White
+  - Gold
+  - UI Token
+  - UI Card
   layers:
   - Default
   - TransparentFX

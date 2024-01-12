@@ -12,8 +12,12 @@ public class InputHandler : MonoBehaviour
     [SerializeField]
     private List<GameObject> tableCards;
 
+    private TableSetup tableSetup;
+
     private void Awake()
     {
+        tableSetup = transform.parent.GetComponent<TableSetup>();
+
         mainCamera = Camera.main;
 
         zoomCard = GameObject.Find("Zoom Card").GetComponent<Card>();
@@ -27,8 +31,15 @@ public class InputHandler : MonoBehaviour
         }
     }
 
+    private void LiftCard(Card card)
+    {
+        card.transform.localPosition += new Vector3(0f, 0.7f, -0.1f);
+    }
+
     public void OnClick(InputAction.CallbackContext context)
     {
+        Player player = GameObject.Find("Player").GetComponent<Player>();
+        
         if (!context.started) return;
 
         var rayHit = Physics2D.GetRayIntersection(mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue()));
@@ -37,6 +48,8 @@ public class InputHandler : MonoBehaviour
         {
             HideLayers();
 
+            player.SetPlayerDeckDefaultPosition();
+
             zoomCard.HideCard();
 
             return;
@@ -44,11 +57,11 @@ public class InputHandler : MonoBehaviour
 
         string tag = rayHit.collider.tag;
 
-        Debug.Log(tag);
-
         if (tag == "Card")
         {
             HideLayers();
+
+            player.SetPlayerDeckDefaultPosition();
 
             Card clickedCard = rayHit.collider.GetComponent<Card>();
 
@@ -56,14 +69,47 @@ public class InputHandler : MonoBehaviour
 
             clickedCard.ToggleActions();
         }
-        else if (tag == "Buy")
+        else if (tag == "UI Card")
         {
+            HideLayers();
+
+            player.SetPlayerDeckDefaultPosition();
+
             Card clickedCard = rayHit.collider.GetComponent<Card>();
 
+            zoomCard.LoadCard(clickedCard.GetCardObject());
+
+            LiftCard(clickedCard);
+        }
+        else if (tag == "Buy")
+        {
+            Card clickedCard = rayHit.transform.parent.parent.GetComponent<Card>();
             // Get active player from game manager
 
             // Temporary solution
-            Player player = GameObject.Find("Player").GetComponent<Player>();
+
+            if (player.HasEnoughTokens(clickedCard))
+            {
+                player.BuyCard(clickedCard);
+
+                tableSetup.ChangeCard(clickedCard);
+                HideLayers();
+                zoomCard.HideCard();
+            }
+        } 
+        else if(tag == "Lock")
+        {
+            return;
+        }
+        else if(tag == "Zoom card")
+        {
+            return;
+        }
+        else if (tag != "Untagged")
+        {
+            player.TakeToken(tag);
+            player.SetPlayerDeckDefaultPosition();
+            zoomCard.HideCard();
         }
 
     }

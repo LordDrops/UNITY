@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TableSetup : MonoBehaviour
@@ -35,8 +36,10 @@ public class TableSetup : MonoBehaviour
         SetCardsRows();
     }
 
-    private CardObject DrawCardFromDeck(List<CardObject> deck)
+    public CardObject DrawCardFromDeck(List<CardObject> deck)
     {
+        if(deck.Count == 0) return null;
+
         int cardIndex = Random.Range(0, deck.Count);
         
         CardObject card = deck[cardIndex];
@@ -44,6 +47,26 @@ public class TableSetup : MonoBehaviour
         deck.Remove(card);
 
         return card;
+    }
+
+    public void ChangeCard(Card card)
+    {
+        switch (card.tier)
+        {
+            case 1:
+                card.LoadCard(DrawCardFromDeck(deckTier1));
+                break;
+            case 2:
+                card.LoadCard(DrawCardFromDeck(deckTier2));
+                break;
+            case 3:
+                card.LoadCard(DrawCardFromDeck(deckTier3));
+                break;
+            default:
+                card.LoadCard(DrawCardFromDeck(deckAristocrats));
+                break;
+        }
+
     }
 
     private void SetCardsRows()
@@ -69,4 +92,5 @@ public class TableSetup : MonoBehaviour
         }
         //TODO Add aristocrats
     }
+
 }

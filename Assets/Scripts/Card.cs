@@ -63,58 +63,74 @@ public class Card : MonoBehaviour
     public void ToggleActions()
     {
         actionsActive = !actionsActive;
-        
+
         actionLayer.SetActive(actionsActive);
     }
 
     private void RenderCard()
     {
+        artworkRender.sprite = artwork;
+        profitToken.sprite = tokenSprite;
+
+        // Activate all elements and remove ones with value 0
+
         whiteCost.gameObject.SetActive(true);
         greenCost.gameObject.SetActive(true);
         blackCost.gameObject.SetActive(true);
         blueCost.gameObject.SetActive(true);
         redCost.gameObject.SetActive(true);
 
-        artworkRender.sprite = artwork;
-        profitToken.sprite = tokenSprite;
-        if(this.costWhite > 0){//WHITE
-        whiteCost.SetText(this.costWhite.ToString());
+        if (this.costWhite > 0)
+        {
+            whiteCost.SetText(this.costWhite.ToString());
         }
-        else{
+        else
+        {
             whiteCost.gameObject.SetActive(false);
         }
-    //BLUE 
-        if(this.costBlue > 0){
-        blueCost.SetText(this.costBlue.ToString());
+
+        if (this.costBlue > 0)
+        {
+            blueCost.SetText(this.costBlue.ToString());
         }
-        else{
+        else
+        {
             blueCost.gameObject.SetActive(false);
         }
-    //GREEN
-        if(this.costGreen > 0){
-        greenCost.SetText(this.costGreen.ToString());
+
+        if (this.costGreen > 0)
+        {
+            greenCost.SetText(this.costGreen.ToString());
         }
-        else{
+        else
+        {
             greenCost.gameObject.SetActive(false);
         }
-    //RED
-        if(this.costRed > 0){
-        redCost.SetText(this.costRed.ToString());
+
+        if (this.costRed > 0)
+        {
+            redCost.SetText(this.costRed.ToString());
         }
-        else{
+        else
+        {
             redCost.gameObject.SetActive(false);
         }
-    //Black
-        if(this.costBlack > 0){
-        blackCost.SetText(this.costBlack.ToString());
+
+        if (this.costBlack > 0)
+        {
+            blackCost.SetText(this.costBlack.ToString());
         }
-        else{
+        else
+        {
             blackCost.gameObject.SetActive(false);
         }
-        if(this.points > 0){
-        profitValue.SetText(this.points.ToString());
+
+        if (this.points > 0)
+        {
+            profitValue.SetText(this.points.ToString());
         }
-        else{
+        else
+        {
             profitValue.SetText("");
         }
 
@@ -122,6 +138,12 @@ public class Card : MonoBehaviour
 
     public void LoadCard(CardObject cardObject)
     {
+        if (cardObject == null) 
+        { 
+            this.gameObject.SetActive(false);
+            return;
+        }
+
         gameObject.SetActive(true);
 
         this.cardObject = cardObject;
@@ -141,7 +163,7 @@ public class Card : MonoBehaviour
         RenderCard();
     }
 
-    void Start()
+    public void BindObjects()
     {
         // Objects to render
         artworkRender = transform.Find("Image").GetComponent<SpriteRenderer>();
@@ -156,8 +178,15 @@ public class Card : MonoBehaviour
 
         profitValue = transform.Find("Profit").gameObject.GetComponent<TextMeshPro>();
         profitToken = transform.Find("Profit").transform.Find("Token").gameObject.GetComponent<SpriteRenderer>();
+    }
 
-        gameObject.SetActive(false);
+    void Start()
+    {
+        BindObjects();
+        if(gameObject.tag == "Zoom card")
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
 
