@@ -4491,6 +4491,7 @@ MonoBehaviour:
   goldTokenSprite: {fileID: 21300000, guid: 451c38657651a224e9036baf2d42b17b, type: 3}
   points: 0
   playerDeck: []
+  lockedCards: []
   blackToken: 0
   whiteToken: 0
   redToken: 0
@@ -4502,10 +4503,10 @@ MonoBehaviour:
   redTokenPermanent: 0
   blueTokenPermanent: 0
   greenTokenPermanent: 0
-  LockedCard: {fileID: 0}
   moves: 3
   tokenPrefab: {fileID: 1127540195779577652, guid: ccc76cb4072368c44b9c1d907b96770e, type: 3}
   cardPrefab: {fileID: 7278217626290141060, guid: 2248abd850c249648aa2521af04027ee, type: 3}
+  lockedCardPrefab: {fileID: 1064314474563050739, guid: 2dbe88a50380aa44dafa239fa1c63f4c, type: 3}
 --- !u!4 &1814859408
 Transform:
   m_ObjectHideFlags: 0

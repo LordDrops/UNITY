@@ -29,6 +29,11 @@ public class InputHandler : MonoBehaviour
         {
             card.GetComponent<Card>().HideActionsLayer();
         }
+
+        foreach(var card in GameObject.FindGameObjectsWithTag("Locked card"))
+        {
+            card.GetComponent<Card>().HideActionsLayer();
+        }
     }
 
     private void LiftCard(Card card)
@@ -81,6 +86,18 @@ public class InputHandler : MonoBehaviour
 
             LiftCard(clickedCard);
         }
+        else if (tag == "Locked card")
+        {
+            HideLayers();
+
+            player.SetPlayerDeckDefaultPosition();
+
+            Card clickedCard = rayHit.collider.GetComponent<Card>();
+
+            zoomCard.LoadCard(clickedCard.GetCardObject());
+
+            clickedCard.ToggleActions();
+        }
         else if (tag == "Buy")
         {
             Card clickedCard = rayHit.transform.parent.parent.GetComponent<Card>();
@@ -92,14 +109,30 @@ public class InputHandler : MonoBehaviour
             {
                 player.BuyCard(clickedCard);
 
-                tableSetup.ChangeCard(clickedCard);
-                HideLayers();
-                zoomCard.HideCard();
+                if(clickedCard.tag == "Card")
+                {
+                    tableSetup.ChangeCard(clickedCard);
+                    HideLayers();
+                    zoomCard.HideCard();
+                } 
+                else
+                {
+                    Destroy(clickedCard.gameObject);
+                    HideLayers();
+                    zoomCard.HideCard();
+                }
             }
         } 
         else if(tag == "Lock")
         {
-            return;
+            Card clickedCard = rayHit.transform.parent.parent.GetComponent<Card>();
+
+            if (player.LockCard(clickedCard))
+            {
+                tableSetup.ChangeCard(clickedCard);
+                HideLayers();
+                zoomCard.HideCard();
+            }
         }
         else if(tag == "Zoom card")
         {
@@ -107,6 +140,7 @@ public class InputHandler : MonoBehaviour
         }
         else if (tag != "Untagged")
         {
+            HideLayers();
             player.TakeToken(tag);
             player.SetPlayerDeckDefaultPosition();
             zoomCard.HideCard();

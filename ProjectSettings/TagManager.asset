@@ -16,6 +16,7 @@ TagManager:
   - Gold
   - UI Token
   - UI Card
+  - Locked card
   layers:
   - Default
   - TransparentFX

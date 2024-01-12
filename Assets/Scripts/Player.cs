@@ -16,6 +16,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private List<CardObject> playerDeck = new List<CardObject>();
 
+    [SerializeField]
+    private List<CardObject> lockedCards = new List<CardObject>();
+
     public int blackToken;
     public int whiteToken;
     public int redToken;
@@ -29,13 +32,11 @@ public class Player : MonoBehaviour
     public int blueTokenPermanent;
     public int greenTokenPermanent;
 
-    public Card LockedCard;
-
     public float moves = 3.0f;
 
     public GameObject tokenPrefab;
     public GameObject cardPrefab;
-
+    public GameObject lockedCardPrefab;
 
     private float cardY = -6.75f;
     private float cardX = -4.45f;
@@ -142,6 +143,8 @@ public class Player : MonoBehaviour
     {
         playerDeck.Add(card.GetCardObject());
 
+        lockedCards.Remove(card.GetCardObject());
+
         points += card.points;
 
         switch (card.benefit)
@@ -169,6 +172,20 @@ public class Player : MonoBehaviour
         UpdatePlayerTokens(card);
         RenderPlayerDeck();
         moves -= 3.0f;
+    }
+
+    public bool LockCard(Card card)
+    {
+        if (lockedCards.Contains(card.GetCardObject())) return false;
+
+        if(lockedCards.Count < 3)
+        {
+            lockedCards.Add(card.GetCardObject());
+            RenderLockedCards();
+            return true;
+        }
+
+        return false;
     }
 
     public void TakeToken(string token)
@@ -278,6 +295,23 @@ public class Player : MonoBehaviour
             var cardScript = playerCard.GetComponent<Card>();
             cardScript.BindObjects();
             cardScript.LoadCard(playerDeck[i]);
+        }
+    }
+
+    public void RenderLockedCards()
+    {
+        foreach (var card in GameObject.FindGameObjectsWithTag("Locked card"))
+        {
+            Destroy(card);
+        }
+
+        for (int i = 0; i < lockedCards.Count; i++)
+        {
+            GameObject lockedCard = Instantiate(lockedCardPrefab, transform);
+            lockedCard.transform.localPosition = new Vector3(-0.92f + i * 1.9f, -3.2f);
+            var cardScript = lockedCard.GetComponent<Card>();
+            cardScript.BindObjects();
+            cardScript.LoadCard(lockedCards[i]);
         }
     }
 
