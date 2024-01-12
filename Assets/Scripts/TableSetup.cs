@@ -36,6 +36,11 @@ public class TableSetup : MonoBehaviour
         SetCardsRows();
     }
 
+    public GameObject GetTableCardAristocrats()
+    {
+        return tableCardsAristocrats;
+    }
+
     public CardObject DrawCardFromDeck(List<CardObject> deck)
     {
         if(deck.Count == 0) return null;

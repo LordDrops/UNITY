@@ -32,7 +32,9 @@ public class Player : MonoBehaviour
     public int blueTokenPermanent;
     public int greenTokenPermanent;
 
-    public float moves = 3.0f;
+    public int moves = 3;
+
+    public bool returning = false;
 
     public GameObject tokenPrefab;
     public GameObject cardPrefab;
@@ -41,13 +43,91 @@ public class Player : MonoBehaviour
     private float cardY = -6.75f;
     private float cardX = -4.45f;
 
+    public void StartTurn(Player player)
+    {
+        playerDeck = player.playerDeck;
+        lockedCards = player.lockedCards;
+
+        blackToken = player.blackToken;
+        whiteToken = player.whiteToken;
+        redToken = player.redToken;
+        blueToken = player.blueToken;
+        greenToken = player.greenToken;
+        goldToken = player.goldToken;
+
+        blackTokenPermanent = player.blackTokenPermanent;
+        whiteTokenPermanent = player.whiteTokenPermanent;
+        redTokenPermanent = player.redTokenPermanent;
+        blueTokenPermanent = player.blueTokenPermanent;
+        greenTokenPermanent = player.greenTokenPermanent;
+
+
+        moves = 3;
+        RenderPlayerDeck();
+        RenderPlayerTokens();
+        RenderLockedCards();
+    }
+
+    private void HasTooManyTokens()
+    {
+        returning = blackToken + redToken + greenToken + blackToken + whiteToken + goldToken > 10;
+    }
+
+    public void EndTurn()
+    {
+        while (returning)
+        {
+            Debug.Log("Return tokens");
+        }
+    }
+
+    public void ReturnToken(string token)
+    {
+        switch (token)
+        {
+            case "Black":
+                blackToken--;
+                break;
+            case "White":
+                whiteToken--;
+                break;
+            case "Red":
+                redToken--;
+                break;
+            case "Blue":
+                blueToken--;
+                break;
+            case "Green":
+                greenToken++;
+                break;
+            case "Gold":
+                goldToken--;
+                break;
+        }
+
+        RenderPlayerTokens();
+
+        HasTooManyTokens();
+    }
+
+
+    public bool CanBuyOrLockCard()
+    {
+        return moves >= 3;
+    }
+    
+    public bool CanTakeToken()
+    {
+        return moves >= 1 ? true : false;
+    }
+
     public bool HasEnoughTokens(Card card)
     {
         if (blackToken + blackTokenPermanent >= card.costBlack && redToken + redTokenPermanent >= card.costRed && blueToken + blueTokenPermanent >= card.costBlue && greenToken + greenTokenPermanent >= card.costGreen && whiteToken + whiteTokenPermanent >= card.costWhite) return true;
 
         int deficit = 0;
 
-        if(card.costBlack > 0 && blackToken + blackTokenPermanent < card.costBlack)
+        if (card.costBlack > 0 && blackToken + blackTokenPermanent < card.costBlack)
         {
             deficit += card.costBlack - (blackToken + blackTokenPermanent);
         }
@@ -72,7 +152,18 @@ public class Player : MonoBehaviour
             deficit += card.costWhite - (whiteToken + whiteTokenPermanent);
         }
 
-        if(goldToken >= deficit) return true;
+        if (goldToken >= deficit) return true;
+
+        return false;
+    }
+
+    public bool HasEnoughPermanentTokens(Card card)
+    {
+        if (blackTokenPermanent >= card.costBlack &&
+    redTokenPermanent >= card.costRed &&
+    blueTokenPermanent >= card.costBlue &&
+    greenTokenPermanent >= card.costGreen &&
+    whiteTokenPermanent >= card.costWhite) return true;
 
         return false;
     }
@@ -85,13 +176,13 @@ public class Player : MonoBehaviour
         int costBlueTmp = card.costBlue - blueTokenPermanent;
         int costWhiteTmp = card.costWhite - whiteTokenPermanent;
 
-        if(costBlackTmp > blackToken)
+        if (costBlackTmp > blackToken)
         {
             costBlackTmp -= blackToken;
             blackToken = 0;
             goldToken -= costBlackTmp;
         }
-        else if(costBlackTmp > 0)
+        else if (costBlackTmp > 0)
         {
             blackToken -= costBlackTmp;
         }
@@ -105,7 +196,7 @@ public class Player : MonoBehaviour
         {
             redToken -= costRedTmp;
         }
-        if(costGreenTmp > greenToken)
+        if (costGreenTmp > greenToken)
         {
             costGreenTmp -= greenToken;
             greenToken = 0;
@@ -115,7 +206,7 @@ public class Player : MonoBehaviour
         {
             greenToken -= costGreenTmp;
         }
-        if(costBlueTmp > blueToken)
+        if (costBlueTmp > blueToken)
         {
             costBlueTmp -= blueToken;
             blueToken = 0;
@@ -125,12 +216,12 @@ public class Player : MonoBehaviour
         {
             blueToken -= costBlueTmp;
         }
-        if(costWhiteTmp > whiteToken)
+        if (costWhiteTmp > whiteToken)
         {
             costWhiteTmp -= whiteToken;
             whiteToken = 0;
             goldToken -= costWhiteTmp;
-        } 
+        }
         else if (costWhiteTmp > 0)
         {
             whiteToken -= costWhiteTmp;
@@ -141,6 +232,8 @@ public class Player : MonoBehaviour
 
     public void BuyCard(Card card)
     {
+        if (card.benefit != ENUM_Benefit.NULL && !CanBuyOrLockCard()) return;
+
         playerDeck.Add(card.GetCardObject());
 
         lockedCards.Remove(card.GetCardObject());
@@ -151,18 +244,23 @@ public class Player : MonoBehaviour
         {
             case ENUM_Benefit.Black:
                 blackTokenPermanent += 1;
+                moves -= 3;
                 break;
             case ENUM_Benefit.White:
                 whiteTokenPermanent += 1;
+                moves -= 3;
                 break;
             case ENUM_Benefit.Red:
                 redTokenPermanent += 1;
+                moves -= 3;
                 break;
             case ENUM_Benefit.Blue:
                 blueTokenPermanent += 1;
+                moves -= 3;
                 break;
             case ENUM_Benefit.Green:
                 greenTokenPermanent += 1;
+                moves -= 3;
                 break;
             case ENUM_Benefit.NULL:
                 break;
@@ -171,25 +269,30 @@ public class Player : MonoBehaviour
 
         UpdatePlayerTokens(card);
         RenderPlayerDeck();
-        moves -= 3.0f;
+        EndTurn();
     }
 
     public bool LockCard(Card card)
     {
+        if (!CanBuyOrLockCard()) return false;
+
         if (lockedCards.Contains(card.GetCardObject())) return false;
 
         if(lockedCards.Count < 3)
         {
             lockedCards.Add(card.GetCardObject());
+            TakeToken("Gold");
             RenderLockedCards();
+            moves -= 3;
             return true;
         }
-
         return false;
     }
 
     public void TakeToken(string token)
     {
+        if (!CanTakeToken()) return;
+
         switch (token)
         {
             case "Black":
@@ -214,11 +317,10 @@ public class Player : MonoBehaviour
                 break;
             case "Gold":
                 goldToken++;
-                moves -= 2;
                 break;
         }
-
         RenderPlayerTokens();
+        EndTurn();
     }
 
     public void RenderPlayerTokens()
