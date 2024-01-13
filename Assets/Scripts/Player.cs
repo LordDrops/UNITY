@@ -34,7 +34,6 @@ public class Player : MonoBehaviour
 
     public int moves = 3;
 
-    public bool returning = false;
 
     public GameObject tokenPrefab;
     public GameObject cardPrefab;
@@ -68,17 +67,9 @@ public class Player : MonoBehaviour
         RenderLockedCards();
     }
 
-    private void HasTooManyTokens()
-    {
-        returning = blackToken + redToken + greenToken + blackToken + whiteToken + goldToken > 10;
-    }
-
     public void EndTurn()
     {
-        while (returning)
-        {
-            Debug.Log("Return tokens");
-        }
+
     }
 
     public void ReturnToken(string token)
@@ -106,8 +97,6 @@ public class Player : MonoBehaviour
         }
 
         RenderPlayerTokens();
-
-        HasTooManyTokens();
     }
 
 

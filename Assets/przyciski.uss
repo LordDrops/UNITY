@@ -1,0 +1,23 @@
+.author {
+    font-size: 18px;
+    -unity-font-definition: resource('Images/menu/taskes2 SDF');
+}
+
+.playersBtn {
+    background-color: rgba(255, 255, 255, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    -unity-font-definition: resource('Images/menu/taskes2 SDF');
+    font-size: 17px;
+}
+
+.mainBtn {
+    background-image: resource('Images/menu/sign 1');
+    flex-grow: 1;
+    -unity-text-align: middle-center;
+    -unity-font-definition: resource('Images/menu/taskes2 SDF');
+    font-size: 20%;
+    color: rgb(0, 0, 0);
+}

@@ -22,6 +22,10 @@ public class InputHandler : MonoBehaviour
         mainCamera = Camera.main;
 
         zoomCard = GameObject.Find("Zoom Card").GetComponent<Card>();
+
+        zoomCard.gameObject.SetActive(false);
+
+        SetTableCards();
     }
 
     private void HideLayers()
@@ -62,122 +66,117 @@ public class InputHandler : MonoBehaviour
         }
 
         string tag = rayHit.collider.tag;
-
-        if (player.returning)
+        
+        if (tag == "Card")
         {
-            if(tag == "UI Token")
-            {
-                string token = rayHit.collider.GetComponent<SpriteRenderer>().sprite.ToString().Replace("TokenSprite", "");
-                player.ReturnToken(token);
-            }
+            HideLayers();
+
+            player.SetPlayerDeckDefaultPosition();
+
+            Card clickedCard = rayHit.collider.GetComponent<Card>();
+
+            zoomCard.LoadCard(clickedCard.GetCardObject());
+
+            clickedCard.ToggleActions();
         }
-        else
+        else if (tag == "Aristocrat")
         {
-            if (tag == "Card")
+            HideLayers();
+
+            player.SetPlayerDeckDefaultPosition();
+
+            Card clickedCard = rayHit.collider.GetComponent<Card>();
+
+            zoomCard.LoadCard(clickedCard.GetCardObject());
+        }
+        else if (tag == "UI Card")
+        {
+            HideLayers();
+
+            player.SetPlayerDeckDefaultPosition();
+
+            Card clickedCard = rayHit.collider.GetComponent<Card>();
+
+            zoomCard.LoadCard(clickedCard.GetCardObject());
+
+            LiftCard(clickedCard);
+        }
+        else if (tag == "Locked card")
+        {
+            HideLayers();
+
+            player.SetPlayerDeckDefaultPosition();
+
+            Card clickedCard = rayHit.collider.GetComponent<Card>();
+
+            zoomCard.LoadCard(clickedCard.GetCardObject());
+
+            clickedCard.ToggleActions();
+        }
+        else if (tag == "Buy")
+        {
+            Card clickedCard = rayHit.transform.parent.parent.GetComponent<Card>();
+            // Get active player from game manager
+
+            // Temporary solution
+
+            if (player.HasEnoughTokens(clickedCard) && player.CanBuyOrLockCard())
             {
-                HideLayers();
+                player.BuyCard(clickedCard);
 
-                player.SetPlayerDeckDefaultPosition();
-
-                Card clickedCard = rayHit.collider.GetComponent<Card>();
-
-                zoomCard.LoadCard(clickedCard.GetCardObject());
-
-                clickedCard.ToggleActions();
-            }
-            else if (tag == "Aristocrat")
-            {
-                HideLayers();
-
-                player.SetPlayerDeckDefaultPosition();
-
-                Card clickedCard = rayHit.collider.GetComponent<Card>();
-
-                zoomCard.LoadCard(clickedCard.GetCardObject());
-            }
-            else if (tag == "UI Card")
-            {
-                HideLayers();
-
-                player.SetPlayerDeckDefaultPosition();
-
-                Card clickedCard = rayHit.collider.GetComponent<Card>();
-
-                zoomCard.LoadCard(clickedCard.GetCardObject());
-
-                LiftCard(clickedCard);
-            }
-            else if (tag == "Locked card")
-            {
-                HideLayers();
-
-                player.SetPlayerDeckDefaultPosition();
-
-                Card clickedCard = rayHit.collider.GetComponent<Card>();
-
-                zoomCard.LoadCard(clickedCard.GetCardObject());
-
-                clickedCard.ToggleActions();
-            }
-            else if (tag == "Buy")
-            {
-                Card clickedCard = rayHit.transform.parent.parent.GetComponent<Card>();
-                // Get active player from game manager
-
-                // Temporary solution
-
-                if (player.HasEnoughTokens(clickedCard) && player.CanBuyOrLockCard())
-                {
-                    player.BuyCard(clickedCard);
-
-                    if (clickedCard.CompareTag("Card"))
-                    {
-                        tableSetup.ChangeCard(clickedCard);
-                    }
-                    else
-                    {
-                        Destroy(clickedCard.gameObject);
-                    }
-
-                    HideLayers();
-                    zoomCard.HideCard();
-
-                    GameObject aristocrats = tableSetup.GetTableCardAristocrats();
-
-                    foreach (Transform aristocrat in aristocrats.transform)
-                    {
-                        Card cardComponent = aristocrat.GetComponent<Card>();
-                        if (player.HasEnoughPermanentTokens(cardComponent))
-                        {
-                            player.BuyCard(cardComponent);
-                            tableSetup.ChangeCard(cardComponent);
-                            return;
-                        }
-                    }
-                }
-            }
-            else if (tag == "Lock")
-            {
-                Card clickedCard = rayHit.transform.parent.parent.GetComponent<Card>();
-
-                if (player.LockCard(clickedCard))
+                if (clickedCard.CompareTag("Card"))
                 {
                     tableSetup.ChangeCard(clickedCard);
-                    HideLayers();
-                    zoomCard.HideCard();
+                }
+                else
+                {
+                    Destroy(clickedCard.gameObject);
+                }
+
+                HideLayers();
+                zoomCard.HideCard();
+
+                GameObject aristocrats = tableSetup.GetTableCardAristocrats();
+
+                foreach (Transform aristocrat in aristocrats.transform)
+                {
+                    Card cardComponent = aristocrat.GetComponent<Card>();
+                    if (player.HasEnoughPermanentTokens(cardComponent))
+                    {
+                        player.BuyCard(cardComponent);
+                        tableSetup.ChangeCard(cardComponent);
+                        return;
+                    }
                 }
             }
-            else if (tag == "Zoom card")
+        }
+        else if (tag == "Lock")
+        {
+            Card clickedCard = rayHit.transform.parent.parent.GetComponent<Card>();
+
+            if (player.LockCard(clickedCard))
             {
-                return;
-            }
-            else if (tag != "Untagged" && player.CanTakeToken())
-            {
+                tableSetup.ChangeCard(clickedCard);
                 HideLayers();
-                player.TakeToken(tag);
-                player.SetPlayerDeckDefaultPosition();
                 zoomCard.HideCard();
             }
         }
+        else if (tag == "Zoom card")
+        {
+            return;
+        }
+        else if (tag != "Untagged" && player.CanTakeToken())
+        {
+            HideLayers();
+            player.TakeToken(tag);
+            player.SetPlayerDeckDefaultPosition();
+            zoomCard.HideCard();
+        }
+    }
+
+    private void SetTableCards()
+    {
+        tableCards.AddRange(GameObject.FindGameObjectsWithTag("Card"));
+        tableCards.AddRange(GameObject.FindGameObjectsWithTag("Aristocrat"));
     }
 }

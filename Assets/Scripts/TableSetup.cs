@@ -31,8 +31,9 @@ public class TableSetup : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
+        SetTableCardObjects();
         SetCardsRows();
     }
 
@@ -95,7 +96,14 @@ public class TableSetup : MonoBehaviour
         {
             card.GetComponent<Card>().LoadCard(DrawCardFromDeck(deckAristocrats));
         }
-        //TODO Add aristocrats
     }
 
+    private void SetTableCardObjects()
+    {
+        tableCardsTier1 = GameObject.Find("Tier 1");
+        tableCardsTier2 = GameObject.Find("Tier 2");
+        tableCardsTier3 = GameObject.Find("Tier 3");
+        tableCardsAristocrats = GameObject.Find("Aristocrats");
+
+    }
 }

@@ -183,10 +183,6 @@ public class Card : MonoBehaviour
     void Start()
     {
         BindObjects();
-        if(gameObject.tag == "Zoom card")
-        {
-            gameObject.SetActive(false);
-        }
     }
 }
 
