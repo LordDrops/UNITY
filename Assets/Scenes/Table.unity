@@ -710,6 +710,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1405383311534620251, guid: 1a53a3dc7039fa840bbee729a24d6a5d, type: 3}
+      propertyPath: m_TagString
+      value: Aristocrat
+      objectReference: {fileID: 0}
     - target: {fileID: 3568311602493075313, guid: 1a53a3dc7039fa840bbee729a24d6a5d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.175189
@@ -1492,6 +1496,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1405383311534620251, guid: 1a53a3dc7039fa840bbee729a24d6a5d, type: 3}
+      propertyPath: m_TagString
+      value: Aristocrat
+      objectReference: {fileID: 0}
     - target: {fileID: 3568311602493075313, guid: 1a53a3dc7039fa840bbee729a24d6a5d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.425189
@@ -2049,6 +2057,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players: []
+  currentPlayer: {fileID: 0}
+  blackTokens: 7
+  redTokens: 7
+  greenTokens: 7
+  blueTokens: 7
+  whiteTokens: 7
+  goldTokens: 5
 --- !u!1 &731967139
 GameObject:
   m_ObjectHideFlags: 0
@@ -2104,7 +2119,7 @@ GameObject:
   - component: {fileID: 758554889}
   m_Layer: 0
   m_Name: GoldTokenSprite
-  m_TagString: Gold
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2637,7 +2652,7 @@ GameObject:
   - component: {fileID: 955379587}
   m_Layer: 0
   m_Name: GoldTokenSprite (2)
-  m_TagString: Gold
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4152,7 +4167,7 @@ GameObject:
   - component: {fileID: 1650281264}
   m_Layer: 0
   m_Name: GoldTokenSprite (1)
-  m_TagString: Gold
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4503,7 +4518,8 @@ MonoBehaviour:
   redTokenPermanent: 0
   blueTokenPermanent: 0
   greenTokenPermanent: 0
-  moves: 3
+  moves: 70
+  returning: 0
   tokenPrefab: {fileID: 1127540195779577652, guid: ccc76cb4072368c44b9c1d907b96770e, type: 3}
   cardPrefab: {fileID: 7278217626290141060, guid: 2248abd850c249648aa2521af04027ee, type: 3}
   lockedCardPrefab: {fileID: 1064314474563050739, guid: 2dbe88a50380aa44dafa239fa1c63f4c, type: 3}
@@ -4537,6 +4553,10 @@ PrefabInstance:
     - target: {fileID: 1405383311534620251, guid: 1a53a3dc7039fa840bbee729a24d6a5d, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1405383311534620251, guid: 1a53a3dc7039fa840bbee729a24d6a5d, type: 3}
+      propertyPath: m_TagString
+      value: Aristocrat
       objectReference: {fileID: 0}
     - target: {fileID: 3568311602493075313, guid: 1a53a3dc7039fa840bbee729a24d6a5d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5482,6 +5502,10 @@ PrefabInstance:
     - target: {fileID: 1405383311534620251, guid: 1a53a3dc7039fa840bbee729a24d6a5d, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1405383311534620251, guid: 1a53a3dc7039fa840bbee729a24d6a5d, type: 3}
+      propertyPath: m_TagString
+      value: Aristocrat
       objectReference: {fileID: 0}
     - target: {fileID: 3568311602493075313, guid: 1a53a3dc7039fa840bbee729a24d6a5d, type: 3}
       propertyPath: m_LocalPosition.x
