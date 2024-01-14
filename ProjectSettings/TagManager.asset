@@ -18,6 +18,7 @@ TagManager:
   - UI Card
   - Locked card
   - Aristocrat
+  - EndTurn
   layers:
   - Default
   - TransparentFX

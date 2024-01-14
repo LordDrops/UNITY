@@ -74,7 +74,17 @@ public class InputHandler : MonoBehaviour
 
         string tag = rayHit.collider.tag;
         
-        if (tag == "Card")
+        if(tag == "EndTurn")
+        {
+            player.EndTurn();
+
+            HideLayers();
+
+            zoomCard.HideCard();
+
+            player.SetPlayerDeckDefaultPosition();
+        }
+        else if (tag == "Card")
         {
             HideLayers();
 
@@ -160,6 +170,9 @@ public class InputHandler : MonoBehaviour
 
             if (player.LockCard(clickedCard))
             {
+                player.moves += 1;
+                gameManager.TakeToken("Gold");
+
                 tableSetup.ChangeCard(clickedCard);
                 HideLayers();
                 zoomCard.HideCard();

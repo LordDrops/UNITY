@@ -336,7 +336,6 @@ public class Player : MonoBehaviour
         if(lockedCards.Count < 3)
         {
             lockedCards.Add(card.GetCardObject());
-            TakeToken("Gold");
             RenderLockedCards();
             moves -= 3;
             EndTurn();

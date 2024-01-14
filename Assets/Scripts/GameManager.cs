@@ -66,6 +66,51 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public bool CanTakeToken(string token)
+    {
+        switch (token)
+        {
+            case "Black":
+                if(blackTokens > 0)
+                {
+                    return true;
+                }
+                break;
+            case "White":
+                if (whiteTokens > 0)
+                {
+                    return true;
+                }
+                break;
+            case "Red":
+                if (redTokens > 0)
+                {
+                    return true;
+                }
+                break;
+            case "Blue":
+                if (blueTokens > 0)
+                {
+                    return true;
+                }
+                break;
+            case "Green":
+                if (greenTokens > 0)
+                {
+                    return true;
+                }
+                break;
+            case "Gold":
+                if (goldTokens > 0)
+                {
+                    return true;
+                }
+                break;
+        }
+
+        return false;
+    }
+
     private void SavePlayerStats()
     {
         int id = currentPlayer.playerId;
@@ -79,7 +124,7 @@ public class GameManager : MonoBehaviour
         players[id].blackToken = currentPlayer.blackToken;
         players[id].whiteToken = currentPlayer.whiteToken;
         players[id].redToken = currentPlayer.redToken;
-        players[id].blueToken = currentPlayer.blackToken;
+        players[id].blueToken = currentPlayer.blueToken;
         players[id].greenToken = currentPlayer.greenToken;
         players[id].goldToken = currentPlayer.goldToken;
 
@@ -114,9 +159,20 @@ public class GameManager : MonoBehaviour
         currentPlayer.moves = 3;
     }
 
+    private void GameOver()
+    {
+        Debug.Log("Player " + currentPlayer.playerId + " has won!");
+    }
+
     public void ChangePlayer()
     {
         SavePlayerStats();
+
+        if(currentPlayer.points >= 15)
+        {
+            GameOver();
+        }
+
         int currentPlayerIndex = currentPlayer.playerId;
         int nextPlayerIndex;
         if (currentPlayerIndex + 1 == players.Count)
@@ -149,7 +205,7 @@ public class GameManager : MonoBehaviour
 
     public void TakeToken(string token)
     {
-        if (!currentPlayer.CanTakeToken()) return;
+        if (!currentPlayer.CanTakeToken() || !CanTakeToken(token)) return;
 
         currentPlayer.TakeToken(token);
 
