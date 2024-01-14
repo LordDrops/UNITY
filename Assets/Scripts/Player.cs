@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public int playerId;
+
     public Sprite blackTokenSprite;
     public Sprite redTokenSprite;
     public Sprite greenTokenSprite;
@@ -13,11 +15,9 @@ public class Player : MonoBehaviour
 
     public int points;
 
-    [SerializeField]
-    private List<CardObject> playerDeck = new List<CardObject>();
+    public List<CardObject> playerDeck = new List<CardObject>();
 
-    [SerializeField]
-    private List<CardObject> lockedCards = new List<CardObject>();
+    public List<CardObject> lockedCards = new List<CardObject>();
 
     public int blackToken;
     public int whiteToken;
@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     public int blueTokenPermanent;
     public int greenTokenPermanent;
 
-    public int moves = 3;
+    public int moves;
 
 
     public GameObject tokenPrefab;
@@ -42,8 +42,18 @@ public class Player : MonoBehaviour
     private float cardY = -6.75f;
     private float cardX = -4.45f;
 
-    public void StartTurn(Player player)
+    private GameManager gameManager;
+
+    private void Awake()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+    public void StartTurn(PlayerStats player)
+    {
+        playerId = player.playerId;
+
+        points = player.points;
+
         playerDeck = player.playerDeck;
         lockedCards = player.lockedCards;
 
@@ -60,16 +70,20 @@ public class Player : MonoBehaviour
         blueTokenPermanent = player.blueTokenPermanent;
         greenTokenPermanent = player.greenTokenPermanent;
 
-
-        moves = 3;
         RenderPlayerDeck();
         RenderPlayerTokens();
         RenderLockedCards();
+        ResetMoves();
+    }
+
+    public void ResetMoves()
+    {
+        moves = 3;
     }
 
     public void EndTurn()
     {
-
+        gameManager.ChangePlayer();
     }
 
     public void ReturnToken(string token)
@@ -98,7 +112,6 @@ public class Player : MonoBehaviour
 
         RenderPlayerTokens();
     }
-
 
     public bool CanBuyOrLockCard()
     {
@@ -146,6 +159,59 @@ public class Player : MonoBehaviour
         return false;
     }
 
+    public int GetTokensToReturn(int permanent, int nonPermanent, int cost)
+    {
+        int tokensAmount = cost - permanent;
+
+        if (tokensAmount <= 0)
+        {
+            return 0;
+        }
+        else if (tokensAmount >= nonPermanent)
+        {
+            return nonPermanent;
+        }
+        else if (tokensAmount < nonPermanent)
+        {
+            return tokensAmount;
+        } 
+        else
+        {
+            return 0;
+        }
+    }
+
+    public int GetGoldTokensToReturn(Card card)
+    {
+        int deficit = 0;
+
+        if (card.costBlack > 0 && blackToken + blackTokenPermanent < card.costBlack)
+        {
+            deficit += card.costBlack - (blackToken + blackTokenPermanent);
+        }
+
+        if (card.costRed > 0 && redToken + redTokenPermanent < card.costRed)
+        {
+            deficit += card.costRed - (redToken + redTokenPermanent);
+        }
+
+        if (card.costGreen > 0 && greenToken + greenTokenPermanent < card.costGreen)
+        {
+            deficit += card.costGreen - (greenToken + greenTokenPermanent);
+        }
+
+        if (card.costBlue > 0 && blueToken + blueTokenPermanent < card.costBlue)
+        {
+            deficit += card.costBlue - (blueToken + blueTokenPermanent);
+        }
+
+        if (card.costWhite > 0 && whiteToken + whiteTokenPermanent < card.costWhite)
+        {
+            deficit += card.costWhite - (whiteToken + whiteTokenPermanent);
+        }
+
+        return deficit;
+    }
     public bool HasEnoughPermanentTokens(Card card)
     {
         if (blackTokenPermanent >= card.costBlack &&
@@ -273,6 +339,7 @@ public class Player : MonoBehaviour
             TakeToken("Gold");
             RenderLockedCards();
             moves -= 3;
+            EndTurn();
             return true;
         }
         return false;
@@ -309,7 +376,10 @@ public class Player : MonoBehaviour
                 break;
         }
         RenderPlayerTokens();
-        EndTurn();
+        if(moves == 0)
+        {
+            EndTurn();
+        }
     }
 
     public void RenderPlayerTokens()
