@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
         {
             transform.GetChild(0).gameObject.SetActive(true);
             tableSetup.enabled = true;
+            currentPlayer = GameObject.Find("Player").GetComponent<Player>();
         }
     }
 
@@ -49,7 +51,6 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine("WaitForSceneLoad");
         }
-
 
     }
 
@@ -72,6 +73,53 @@ public class GameManager : MonoBehaviour
         else
         {
             currentPlayer = players[currentPlayerIndex + 1];
+        }
+    }
+
+    public void BuyCard(Card card)
+    {
+        if(card.GetCardObject().tier != 4)
+        {
+            blackTokens += currentPlayer.GetTokensToReturn(currentPlayer.blackTokenPermanent, currentPlayer.blackToken, card.costBlack);
+            redTokens += currentPlayer.GetTokensToReturn(currentPlayer.redTokenPermanent, currentPlayer.redToken, card.costRed);
+            greenTokens += currentPlayer.GetTokensToReturn(currentPlayer.greenTokenPermanent, currentPlayer.greenToken, card.costGreen);
+            blueTokens += currentPlayer.GetTokensToReturn(currentPlayer.blueTokenPermanent, currentPlayer.blueToken, card.costBlue);
+            whiteTokens += currentPlayer.GetTokensToReturn(currentPlayer.whiteTokenPermanent, currentPlayer.whiteToken, card.costWhite);
+
+            goldTokens += currentPlayer.GetGoldTokensToReturn(card);
+        }
+        currentPlayer.BuyCard(card);
+    }
+
+    public void TakeToken(string token)
+    {
+        if (!currentPlayer.CanTakeToken()) return;
+
+        currentPlayer.TakeToken(token);
+
+        switch (token)
+        {
+            case "Black":
+                blackTokens--;
+                break;
+            case "White":
+                whiteTokens--;
+                break;
+            case "Red":
+                redTokens--;
+                
+                break;
+            case "Blue":
+                blueTokens--;
+                
+                break;
+            case "Green":
+                greenTokens--;
+                
+                break;
+            case "Gold":
+                goldTokens--;
+                break;
         }
     }
 }

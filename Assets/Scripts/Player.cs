@@ -99,7 +99,6 @@ public class Player : MonoBehaviour
         RenderPlayerTokens();
     }
 
-
     public bool CanBuyOrLockCard()
     {
         return moves >= 3;
@@ -146,6 +145,59 @@ public class Player : MonoBehaviour
         return false;
     }
 
+    public int GetTokensToReturn(int permanent, int nonPermanent, int cost)
+    {
+        int tokensAmount = cost - permanent;
+
+        if (tokensAmount <= 0)
+        {
+            return 0;
+        }
+        else if (tokensAmount >= nonPermanent)
+        {
+            return nonPermanent;
+        }
+        else if (tokensAmount < nonPermanent)
+        {
+            return tokensAmount;
+        } 
+        else
+        {
+            return 0;
+        }
+    }
+
+    public int GetGoldTokensToReturn(Card card)
+    {
+        int deficit = 0;
+
+        if (card.costBlack > 0 && blackToken + blackTokenPermanent < card.costBlack)
+        {
+            deficit += card.costBlack - (blackToken + blackTokenPermanent);
+        }
+
+        if (card.costRed > 0 && redToken + redTokenPermanent < card.costRed)
+        {
+            deficit += card.costRed - (redToken + redTokenPermanent);
+        }
+
+        if (card.costGreen > 0 && greenToken + greenTokenPermanent < card.costGreen)
+        {
+            deficit += card.costGreen - (greenToken + greenTokenPermanent);
+        }
+
+        if (card.costBlue > 0 && blueToken + blueTokenPermanent < card.costBlue)
+        {
+            deficit += card.costBlue - (blueToken + blueTokenPermanent);
+        }
+
+        if (card.costWhite > 0 && whiteToken + whiteTokenPermanent < card.costWhite)
+        {
+            deficit += card.costWhite - (whiteToken + whiteTokenPermanent);
+        }
+
+        return deficit;
+    }
     public bool HasEnoughPermanentTokens(Card card)
     {
         if (blackTokenPermanent >= card.costBlack &&
@@ -309,7 +361,10 @@ public class Player : MonoBehaviour
                 break;
         }
         RenderPlayerTokens();
-        EndTurn();
+        if(moves == 0)
+        {
+            EndTurn();
+        }
     }
 
     public void RenderPlayerTokens()

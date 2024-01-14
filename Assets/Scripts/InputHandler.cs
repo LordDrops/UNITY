@@ -10,6 +10,10 @@ public class InputHandler : MonoBehaviour
 
     private Card zoomCard;
 
+    private Player player;
+
+    private GameManager gameManager;
+
     [SerializeField]
     private List<GameObject> tableCards;
 
@@ -19,9 +23,13 @@ public class InputHandler : MonoBehaviour
     {
         tableSetup = transform.parent.GetComponent<TableSetup>();
 
+        gameManager = transform.parent.GetComponent<GameManager>();
+
         mainCamera = Camera.main;
 
         zoomCard = GameObject.Find("Zoom Card").GetComponent<Card>();
+
+        player = GameObject.Find("Player").GetComponent<Player>();
 
         zoomCard.gameObject.SetActive(false);
 
@@ -48,7 +56,6 @@ public class InputHandler : MonoBehaviour
 
     public void OnClick(InputAction.CallbackContext context)
     {
-        Player player = GameObject.Find("Player").GetComponent<Player>();
         
         if (!context.started) return;
 
@@ -116,13 +123,10 @@ public class InputHandler : MonoBehaviour
         else if (tag == "Buy")
         {
             Card clickedCard = rayHit.transform.parent.parent.GetComponent<Card>();
-            // Get active player from game manager
-
-            // Temporary solution
 
             if (player.HasEnoughTokens(clickedCard) && player.CanBuyOrLockCard())
             {
-                player.BuyCard(clickedCard);
+                gameManager.BuyCard(clickedCard);
 
                 if (clickedCard.CompareTag("Card"))
                 {
@@ -168,7 +172,7 @@ public class InputHandler : MonoBehaviour
         else if (tag != "Untagged" && player.CanTakeToken())
         {
             HideLayers();
-            player.TakeToken(tag);
+            gameManager.TakeToken(tag);
             player.SetPlayerDeckDefaultPosition();
             zoomCard.HideCard();
         }
