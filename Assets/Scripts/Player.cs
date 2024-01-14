@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public int playerId;
+
     public Sprite blackTokenSprite;
     public Sprite redTokenSprite;
     public Sprite greenTokenSprite;
@@ -13,11 +15,9 @@ public class Player : MonoBehaviour
 
     public int points;
 
-    [SerializeField]
-    private List<CardObject> playerDeck = new List<CardObject>();
+    public List<CardObject> playerDeck = new List<CardObject>();
 
-    [SerializeField]
-    private List<CardObject> lockedCards = new List<CardObject>();
+    public List<CardObject> lockedCards = new List<CardObject>();
 
     public int blackToken;
     public int whiteToken;
@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     public int blueTokenPermanent;
     public int greenTokenPermanent;
 
-    public int moves = 3;
+    public int moves;
 
 
     public GameObject tokenPrefab;
@@ -42,8 +42,18 @@ public class Player : MonoBehaviour
     private float cardY = -6.75f;
     private float cardX = -4.45f;
 
-    public void StartTurn(Player player)
+    private GameManager gameManager;
+
+    private void Awake()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+    public void StartTurn(PlayerStats player)
+    {
+        playerId = player.playerId;
+
+        points = player.points;
+
         playerDeck = player.playerDeck;
         lockedCards = player.lockedCards;
 
@@ -60,16 +70,20 @@ public class Player : MonoBehaviour
         blueTokenPermanent = player.blueTokenPermanent;
         greenTokenPermanent = player.greenTokenPermanent;
 
-
-        moves = 3;
         RenderPlayerDeck();
         RenderPlayerTokens();
         RenderLockedCards();
+        ResetMoves();
+    }
+
+    public void ResetMoves()
+    {
+        moves = 3;
     }
 
     public void EndTurn()
     {
-
+        gameManager.ChangePlayer();
     }
 
     public void ReturnToken(string token)
@@ -325,6 +339,7 @@ public class Player : MonoBehaviour
             TakeToken("Gold");
             RenderLockedCards();
             moves -= 3;
+            EndTurn();
             return true;
         }
         return false;
