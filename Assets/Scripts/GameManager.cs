@@ -44,6 +44,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public List<PlayerStats> GetPlayers()
+    {
+        return players;
+    }
+
     public void CreateGame(int playersAmount)
     {
         CreatePlayers(playersAmount);
