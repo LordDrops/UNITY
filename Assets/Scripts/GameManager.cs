@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
             transform.GetChild(0).gameObject.SetActive(true);
             tableSetup.enabled = true;
             currentPlayer = GameObject.Find("Player").GetComponent<Player>();
+            GameObject.Find("UI").GetComponent<TableUI>().RenderPlayerScore(players.Count);
             currentPlayer.StartTurn(players[0]);
         }
     }
@@ -245,7 +246,7 @@ public class PlayerStats
 {
     public int playerId;
 
-    public int points = 3;
+    public int points = 0;
 
     public List<CardObject> playerDeck = new List<CardObject>();
 

@@ -338,7 +338,6 @@ public class Player : MonoBehaviour
             lockedCards.Add(card.GetCardObject());
             RenderLockedCards();
             moves -= 3;
-            EndTurn();
             return true;
         }
         return false;

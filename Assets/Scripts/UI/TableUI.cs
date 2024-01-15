@@ -46,7 +46,7 @@ public class TableUI : MonoBehaviour
 
         var uiDocument = GetComponent<UIDocument>();
 
-        pauseMenu = uiDocument.rootVisualElement.Q("Menu") as VisualElement;
+        pauseMenu = uiDocument.rootVisualElement.Q("Menu");
         resumeBtn = uiDocument.rootVisualElement.Q("Resume") as Button;
         tutorialBtn = uiDocument.rootVisualElement.Q("Tutorial") as Button;
         exitBtn = uiDocument.rootVisualElement.Q("Exit") as Button;
@@ -73,6 +73,9 @@ public class TableUI : MonoBehaviour
         
         player4Container = uiDocument.rootVisualElement.Q("player4Container");
         player4Points = uiDocument.rootVisualElement.Q("player4") as TextElement;
+
+        showStatsBtn.RegisterCallback<ClickEvent>(ShowStatsBar);
+        hideStatsBtn.RegisterCallback<ClickEvent>(CloseStatsBar);
     }
 
     public void RenderPlayerScore(int playersAmount)
@@ -95,21 +98,21 @@ public class TableUI : MonoBehaviour
             playerPoints.Add(player2Points);
             playerPoints.Add(player3Points);
             playerPoints.Add(player4Points);
-
         }
     }
 
-    public void UpdatePlayersPoints()
+    private void UpdatePlayersPoints()
     {
         int i = 0;
 
         foreach(var player in gameManager.GetPlayers())
         {
             playerPoints[i].text = player.points.ToString();
+            i++;
         }
     }
 
-    public void UpdateCurrentPlayerToken()
+    private void UpdateCurrentPlayerToken()
     {
         blackTokens.text = (gameManager.currentPlayer.blackToken + gameManager.currentPlayer.blackTokenPermanent).ToString();
         redTokens.text = (gameManager.currentPlayer.redToken + gameManager.currentPlayer.redTokenPermanent).ToString();
@@ -119,8 +122,15 @@ public class TableUI : MonoBehaviour
         goldTokens.text = (gameManager.currentPlayer.goldToken).ToString();
     }
 
-    private void ShowStatsBar()
+    private void ShowStatsBar(ClickEvent evt)
     {
+        stats.style.display = DisplayStyle.Flex;
+        UpdateCurrentPlayerToken();
+        UpdatePlayersPoints();
+    }
 
+    private void CloseStatsBar(ClickEvent evt)
+    {
+        stats.style.display = DisplayStyle.None;
     }
 }   

@@ -173,6 +173,8 @@ public class InputHandler : MonoBehaviour
                 player.moves += 1;
                 gameManager.TakeToken("Gold");
 
+                player.EndTurn();
+
                 tableSetup.ChangeCard(clickedCard);
                 HideLayers();
                 zoomCard.HideCard();

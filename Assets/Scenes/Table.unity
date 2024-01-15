@@ -5511,6 +5511,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2115306818}
   - component: {fileID: 2115306817}
+  - component: {fileID: 2115306819}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -5549,6 +5550,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2115306819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115306816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9513b64518963342824f6f8f1bde079, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
 --- !u!1001 &3666004581834212920
 PrefabInstance:
   m_ObjectHideFlags: 0
