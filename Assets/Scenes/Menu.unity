@@ -135,6 +135,70 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5161331046310695976, guid: 2ea4d3b09fc07594c9fcefeb4f82a3e2, type: 3}
+      propertyPath: m_NotificationBehavior
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161331046310695976, guid: 2ea4d3b09fc07594c9fcefeb4f82a3e2, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161331046310695976, guid: 2ea4d3b09fc07594c9fcefeb4f82a3e2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_ActionId
+      value: 7f530c03-cbab-4017-b7bb-563af8027239
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161331046310695976, guid: 2ea4d3b09fc07594c9fcefeb4f82a3e2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_ActionName
+      value: Gameplay/Pause[/Keyboard/escape]
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161331046310695976, guid: 2ea4d3b09fc07594c9fcefeb4f82a3e2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161331046310695976, guid: 2ea4d3b09fc07594c9fcefeb4f82a3e2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161331046310695976, guid: 2ea4d3b09fc07594c9fcefeb4f82a3e2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161331046310695976, guid: 2ea4d3b09fc07594c9fcefeb4f82a3e2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161331046310695976, guid: 2ea4d3b09fc07594c9fcefeb4f82a3e2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: 51efe0237a877024eb77b95b8cf330a5, type: 3}
+    - target: {fileID: 5161331046310695976, guid: 2ea4d3b09fc07594c9fcefeb4f82a3e2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1470692688}
+    - target: {fileID: 5161331046310695976, guid: 2ea4d3b09fc07594c9fcefeb4f82a3e2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161331046310695976, guid: 2ea4d3b09fc07594c9fcefeb4f82a3e2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161331046310695976, guid: 2ea4d3b09fc07594c9fcefeb4f82a3e2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnPause
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161331046310695976, guid: 2ea4d3b09fc07594c9fcefeb4f82a3e2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: InputHandler, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161331046310695976, guid: 2ea4d3b09fc07594c9fcefeb4f82a3e2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InputHandler, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161331046310695976, guid: 2ea4d3b09fc07594c9fcefeb4f82a3e2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8626765464354083386, guid: 2ea4d3b09fc07594c9fcefeb4f82a3e2, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -276,6 +340,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1470692688 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2184325201356627525, guid: 2ea4d3b09fc07594c9fcefeb4f82a3e2, type: 3}
+  m_PrefabInstance: {fileID: 765168990}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ddea4aaa73b7ea45ab4c9da7c08349d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1516992771
 GameObject:
   m_ObjectHideFlags: 0

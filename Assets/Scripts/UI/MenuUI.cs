@@ -58,7 +58,7 @@ public class MenuUI : MonoBehaviour
 
     private void OnExitClick(ClickEvent evt)
     {
-        // Exit game
+        Application.Quit();
     }
 
     private void OnPlayers2Click(ClickEvent evt)

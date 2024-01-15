@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class TableUI : MonoBehaviour
@@ -37,6 +38,8 @@ public class TableUI : MonoBehaviour
     private TextElement player2Points;
     private TextElement player3Points;
     private TextElement player4Points;
+
+    private Button gameOver;
 
     private List<TextElement> playerPoints = new List<TextElement>();
 
@@ -77,6 +80,8 @@ public class TableUI : MonoBehaviour
         nextPlayerLayer = uiDocument.rootVisualElement.Q("nextPlayer");
         nextPlayerName = uiDocument.rootVisualElement.Q("nextPlayerText") as TextElement;
 
+        gameOver = uiDocument.rootVisualElement.Q("gameOver") as Button;
+
         showStatsBtn.RegisterCallback<ClickEvent>(ShowStatsBar);
         hideStatsBtn.RegisterCallback<ClickEvent>(CloseStatsBar);
 
@@ -85,6 +90,12 @@ public class TableUI : MonoBehaviour
 
         nextPlayerLayer.RegisterCallback<MouseLeaveEvent>(OnMouseNotOverUI);
         stats.RegisterCallback<MouseLeaveEvent>(OnMouseNotOverUI);
+
+        resumeBtn.RegisterCallback<ClickEvent>(TogglePauseMenu);
+        tutorialBtn.RegisterCallback<ClickEvent>(ShowTutorial);
+        exitBtn.RegisterCallback<ClickEvent>(LoadInitScene);
+
+        gameOver.RegisterCallback<ClickEvent>(LoadInitScene);
     }
 
     public void RenderPlayerScore(int playersAmount)
@@ -145,7 +156,7 @@ public class TableUI : MonoBehaviour
 
     IEnumerator AddClickCallbackAfterDelay()
     { 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         nextPlayerLayer.RegisterCallback<ClickEvent>(OnNextPlayerClick);
     }
 
@@ -177,5 +188,36 @@ public class TableUI : MonoBehaviour
         {
             gameManager.isOverUI = false;
         }
+    }
+
+    public void TogglePauseMenu(ClickEvent _ = null)
+    {
+        if(pauseMenu.style.display == DisplayStyle.None)
+        {
+            pauseMenu.style.display = DisplayStyle.Flex;
+        } 
+        else
+        {
+            pauseMenu.style.display = DisplayStyle.None;
+        }
+    }
+
+    private void ShowTutorial(ClickEvent _)
+    {
+        Debug.Log("Tutorial");
+    }
+
+    private void LoadInitScene(ClickEvent _)
+    {
+        Destroy(gameManager.gameObject);
+        SceneManager.LoadScene(0);
+    }
+
+    public void GameOver(int playerIndex)
+    {
+        string message = "Gracz " + (playerIndex + 1).ToString() + " wygral!";
+        nextPlayerLayer.style.display = DisplayStyle.Flex;
+        nextPlayerName.text = message;
+        gameOver.style.display = DisplayStyle.Flex;
     }
 }   

@@ -173,6 +173,7 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         Debug.Log("Player " + currentPlayer.playerId + " has won!");
+        tableUI.GameOver(currentPlayer.playerId);
     }
 
     public void ChangePlayer()

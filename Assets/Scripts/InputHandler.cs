@@ -14,6 +14,8 @@ public class InputHandler : MonoBehaviour
 
     private GameManager gameManager;
 
+    private TableUI tableUI;
+
     [SerializeField]
     private List<GameObject> tableCards;
 
@@ -30,6 +32,8 @@ public class InputHandler : MonoBehaviour
         zoomCard = GameObject.Find("Zoom Card").GetComponent<Card>();
 
         player = GameObject.Find("Player").GetComponent<Player>();
+
+        tableUI = GameObject.Find("UI").GetComponent<TableUI>();
 
         zoomCard.gameObject.SetActive(false);
 
@@ -52,6 +56,13 @@ public class InputHandler : MonoBehaviour
     private void LiftCard(Card card)
     {
         card.transform.localPosition += new Vector3(0f, 0.7f, -0.1f);
+    }
+
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if (!context.started) return;
+
+        tableUI.TogglePauseMenu();
     }
 
     public void OnClick(InputAction.CallbackContext context)
