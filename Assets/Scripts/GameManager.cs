@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public Player currentPlayer;
 
+    private TableUI tableUI;
+
     private TableSetup tableSetup;
 
     public int blackTokens = 7;
@@ -20,6 +22,8 @@ public class GameManager : MonoBehaviour
     public int blueTokens = 7;
     public int whiteTokens = 7;
     public int goldTokens = 5;
+
+    public bool isOverUI = false;
 
     void Awake()
     {
@@ -39,8 +43,9 @@ public class GameManager : MonoBehaviour
         {
             transform.GetChild(0).gameObject.SetActive(true);
             tableSetup.enabled = true;
+            tableUI = GameObject.Find("UI").GetComponent<TableUI>();
             currentPlayer = GameObject.Find("Player").GetComponent<Player>();
-            GameObject.Find("UI").GetComponent<TableUI>().RenderPlayerScore(players.Count);
+            tableUI.RenderPlayerScore(players.Count);
             currentPlayer.StartTurn(players[0]);
         }
     }
@@ -190,6 +195,7 @@ public class GameManager : MonoBehaviour
             nextPlayerIndex = currentPlayerIndex + 1;
         }
 
+        tableUI.EndTurn(nextPlayerIndex + 1);
         currentPlayer.StartTurn(players[nextPlayerIndex]);
         Debug.Log("Now playing - player" + nextPlayerIndex);
     }

@@ -18,7 +18,7 @@ public class TableUI : MonoBehaviour
     private Button tutorialBtn;
     private Button exitBtn;
 
-    private VisualElement nextPlayer;
+    private VisualElement nextPlayerLayer;
     private TextElement nextPlayerName;
 
     private TextElement blackTokens;
@@ -74,8 +74,17 @@ public class TableUI : MonoBehaviour
         player4Container = uiDocument.rootVisualElement.Q("player4Container");
         player4Points = uiDocument.rootVisualElement.Q("player4") as TextElement;
 
+        nextPlayerLayer = uiDocument.rootVisualElement.Q("nextPlayer");
+        nextPlayerName = uiDocument.rootVisualElement.Q("nextPlayerText") as TextElement;
+
         showStatsBtn.RegisterCallback<ClickEvent>(ShowStatsBar);
         hideStatsBtn.RegisterCallback<ClickEvent>(CloseStatsBar);
+
+        nextPlayerLayer.RegisterCallback<MouseEnterEvent>(OnMouseOverUI);
+        stats.RegisterCallback<MouseEnterEvent>(OnMouseOverUI);
+
+        nextPlayerLayer.RegisterCallback<MouseLeaveEvent>(OnMouseNotOverUI);
+        stats.RegisterCallback<MouseLeaveEvent>(OnMouseNotOverUI);
     }
 
     public void RenderPlayerScore(int playersAmount)
@@ -122,15 +131,51 @@ public class TableUI : MonoBehaviour
         goldTokens.text = (gameManager.currentPlayer.goldToken).ToString();
     }
 
-    private void ShowStatsBar(ClickEvent evt)
+    private void ShowStatsBar(ClickEvent _)
     {
         stats.style.display = DisplayStyle.Flex;
         UpdateCurrentPlayerToken();
         UpdatePlayersPoints();
     }
 
-    private void CloseStatsBar(ClickEvent evt)
+    private void CloseStatsBar(ClickEvent _)
     {
         stats.style.display = DisplayStyle.None;
+    }
+
+    IEnumerator AddClickCallbackAfterDelay()
+    { 
+        yield return new WaitForSeconds(3);
+        nextPlayerLayer.RegisterCallback<ClickEvent>(OnNextPlayerClick);
+    }
+
+    public void EndTurn(int nextPlayer)
+    {
+        nextPlayerName.text = "Gracz " + nextPlayer.ToString();
+        nextPlayerLayer.style.display = DisplayStyle.Flex;
+        StartCoroutine(AddClickCallbackAfterDelay());
+    }
+
+    private void OnNextPlayerClick(ClickEvent evt)
+    {
+            nextPlayerLayer.style.display = DisplayStyle.None;
+            nextPlayerLayer.UnregisterCallback<ClickEvent>(OnNextPlayerClick);
+            return;
+    }
+
+    private void OnMouseOverUI(MouseEnterEvent evt)
+    {
+        if(evt.target == nextPlayerLayer || evt.target == stats)
+        {
+            gameManager.isOverUI = true;
+        }
+    }
+    
+    private void OnMouseNotOverUI(MouseLeaveEvent evt)
+    {
+        if(evt.target == nextPlayerLayer || evt.target == stats)
+        {
+            gameManager.isOverUI = false;
+        }
     }
 }   
