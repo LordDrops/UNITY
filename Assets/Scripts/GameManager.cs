@@ -180,9 +180,10 @@ public class GameManager : MonoBehaviour
     {
         SavePlayerStats();
 
-        if(currentPlayer.points >= 15)
+        if (currentPlayer.points >= 15)
         {
             GameOver();
+            return;
         }
 
         int currentPlayerIndex = currentPlayer.playerId;
@@ -199,6 +200,7 @@ public class GameManager : MonoBehaviour
         tableUI.EndTurn(nextPlayerIndex + 1);
         currentPlayer.StartTurn(players[nextPlayerIndex]);
         Debug.Log("Now playing - player" + nextPlayerIndex);
+
     }
 
     public void BuyCard(Card card)

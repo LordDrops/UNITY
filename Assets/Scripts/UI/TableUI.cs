@@ -216,6 +216,7 @@ public class TableUI : MonoBehaviour
     public void GameOver(int playerIndex)
     {
         string message = "Gracz " + (playerIndex + 1).ToString() + " wygral!";
+        nextPlayerLayer.UnregisterCallback<ClickEvent>(OnNextPlayerClick);
         nextPlayerLayer.style.display = DisplayStyle.Flex;
         nextPlayerName.text = message;
         gameOver.style.display = DisplayStyle.Flex;
