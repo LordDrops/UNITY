@@ -34,6 +34,8 @@ public class TableUI : MonoBehaviour
     private VisualElement player3Container;
     private VisualElement player4Container;
 
+    private VisualElement tutorial;
+
     private TextElement player1Points;
     private TextElement player2Points;
     private TextElement player3Points;
@@ -82,6 +84,8 @@ public class TableUI : MonoBehaviour
 
         gameOver = uiDocument.rootVisualElement.Q("gameOver") as Button;
 
+        tutorial = uiDocument.rootVisualElement.Q("TutorialLayer");
+
         showStatsBtn.RegisterCallback<ClickEvent>(ShowStatsBar);
         hideStatsBtn.RegisterCallback<ClickEvent>(CloseStatsBar);
 
@@ -96,6 +100,8 @@ public class TableUI : MonoBehaviour
         exitBtn.RegisterCallback<ClickEvent>(LoadInitScene);
 
         gameOver.RegisterCallback<ClickEvent>(LoadInitScene);
+
+        tutorial.RegisterCallback<ClickEvent>(HideTutorial);
     }
 
     public void RenderPlayerScore(int playersAmount)
@@ -194,17 +200,24 @@ public class TableUI : MonoBehaviour
     {
         if(pauseMenu.style.display == DisplayStyle.None)
         {
+            gameManager.isOverUI = true;
             pauseMenu.style.display = DisplayStyle.Flex;
         } 
         else
         {
+            gameManager.isOverUI = false;
             pauseMenu.style.display = DisplayStyle.None;
         }
     }
 
     private void ShowTutorial(ClickEvent _)
     {
-        Debug.Log("Tutorial");
+        tutorial.style.display = DisplayStyle.Flex;
+    }
+
+    private void HideTutorial(ClickEvent _)
+    { 
+        tutorial.style.display = DisplayStyle.None;
     }
 
     private void LoadInitScene(ClickEvent _)
