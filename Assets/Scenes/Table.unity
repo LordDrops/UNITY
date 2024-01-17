@@ -1962,7 +1962,7 @@ GameObject:
   - component: {fileID: 758554889}
   m_Layer: 0
   m_Name: GoldTokenSprite
-  m_TagString: Untagged
+  m_TagString: Gold
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2475,7 +2475,7 @@ GameObject:
   - component: {fileID: 955379587}
   m_Layer: 0
   m_Name: GoldTokenSprite (2)
-  m_TagString: Untagged
+  m_TagString: Gold
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3960,7 +3960,7 @@ GameObject:
   - component: {fileID: 1650281264}
   m_Layer: 0
   m_Name: GoldTokenSprite (1)
-  m_TagString: Untagged
+  m_TagString: Gold
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

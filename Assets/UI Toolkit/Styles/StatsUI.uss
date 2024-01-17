@@ -7,8 +7,8 @@
     flex-grow: 0;
     background-image: resource('Images/Tokens/BlackTokenSprrite');
     background-color: rgba(255, 255, 255, 0);
-    height: 100px;
-    width: 100px;
+    height: 13%;
+    width: 80%;
 }
 
 .points {
@@ -22,4 +22,13 @@
     background-color: rgba(188, 188, 188, 0);
     -unity-font-definition: resource('Images/menu/taskes2 SDF');
     font-size: 48px;
+}
+
+.playerContainer {
+    flex-grow: 1;
+    height: 100%;
+    width: 20%;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
 }

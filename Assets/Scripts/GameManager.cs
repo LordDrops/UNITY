@@ -23,6 +23,13 @@ public class GameManager : MonoBehaviour
     public int whiteTokens = 7;
     public int goldTokens = 5;
 
+    private List<GameObject> blackTokensTable = new List<GameObject>();
+    private List<GameObject> redTokensTable = new List<GameObject>();
+    private List<GameObject> greenTokensTable = new List<GameObject>();
+    private List<GameObject> blueTokensTable = new List<GameObject>();
+    private List<GameObject> whiteTokensTable = new List<GameObject>();
+    private List<GameObject> goldTokensTable = new List<GameObject>();
+
     public bool isOverUI = false;
 
     void Awake()
@@ -47,6 +54,13 @@ public class GameManager : MonoBehaviour
             currentPlayer = GameObject.Find("Player").GetComponent<Player>();
             tableUI.RenderPlayerScore(players.Count);
             currentPlayer.StartTurn(players[0]);
+
+            blackTokensTable.AddRange(GameObject.FindGameObjectsWithTag("Black"));
+            redTokensTable.AddRange(GameObject.FindGameObjectsWithTag("Red"));
+            greenTokensTable.AddRange(GameObject.FindGameObjectsWithTag("Green"));
+            blueTokensTable.AddRange(GameObject.FindGameObjectsWithTag("Blue"));
+            whiteTokensTable.AddRange(GameObject.FindGameObjectsWithTag("White"));
+            goldTokensTable.AddRange(GameObject.FindGameObjectsWithTag("Gold"));
         }
     }
 
@@ -218,6 +232,57 @@ public class GameManager : MonoBehaviour
         currentPlayer.BuyCard(card);
     }
 
+    private void RenderTokens(List<GameObject> tokens, int amount)
+    {
+        if(amount >= 6)
+        {
+            foreach(var token in tokens)
+            {
+                token.SetActive(true);
+            }
+        } 
+        else if (amount >= 4)
+        {
+
+            foreach (var token in tokens)
+            {
+                token.SetActive(false);
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                tokens[i].SetActive(true);
+            }
+        }
+        else if (amount >= 2)
+        {
+
+            foreach (var token in tokens)
+            {
+                token.SetActive(false);
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                tokens[i].SetActive(true);
+            }
+        }
+        else if (amount == 1)
+        {
+            foreach (var token in tokens)
+            {
+                token.SetActive(false);
+            }
+            
+            tokens[0].SetActive(true);
+        }
+        else
+        {
+            foreach (var token in tokens)
+            {
+                token.SetActive(false);
+            }
+        }
+    }
+
     public void TakeToken(string token)
     {
         if (!currentPlayer.CanTakeToken() || !CanTakeToken(token)) return;
@@ -228,24 +293,27 @@ public class GameManager : MonoBehaviour
         {
             case "Black":
                 blackTokens--;
+                RenderTokens(blackTokensTable, blackTokens);
                 break;
             case "White":
                 whiteTokens--;
+                RenderTokens(whiteTokensTable, whiteTokens);
                 break;
             case "Red":
                 redTokens--;
-                
+                RenderTokens(redTokensTable, redTokens);
                 break;
             case "Blue":
                 blueTokens--;
-                
+                RenderTokens(blueTokensTable, blueTokens);
                 break;
             case "Green":
                 greenTokens--;
-                
+                RenderTokens(greenTokensTable, greenTokens);
                 break;
             case "Gold":
                 goldTokens--;
+                RenderTokens(goldTokensTable, goldTokens);
                 break;
         }
     }

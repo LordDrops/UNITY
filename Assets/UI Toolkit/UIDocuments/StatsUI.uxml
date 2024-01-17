@@ -2,54 +2,57 @@
     <Style src="project://database/Assets/UI%20Toolkit/Styles/StatsUI.uss?fileID=7433441132597879392&amp;guid=3b8030c6dc68cf8439931ae4c6e8f6ac&amp;type=3#StatsUI" />
     <ui:VisualElement name="Background" style="width: 100%; height: 100%; align-items: flex-start; justify-content: flex-start; background-color: rgba(157, 157, 157, 0); flex-shrink: 0;">
         <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="StatsButton" style="top: 75%; right: auto; width: 10%; left: 10%; background-image: resource(&apos;Images/menu/UIstats&apos;); background-color: rgba(36, 31, 31, 0); height: 10%; color: rgba(45, 45, 45, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); position: absolute; overflow: hidden;" />
-        <ui:VisualElement name="Stats" style="flex-grow: 1; align-items: auto; height: 100%; width: 25%; justify-content: space-between; flex-shrink: 0; position: relative; background-color: rgb(166, 148, 124); visibility: visible; display: none; overflow: visible; top: 0; left: 0;">
+        <ui:VisualElement name="Stats" style="flex-grow: 1; align-items: auto; height: 100%; width: 44%; justify-content: space-between; flex-shrink: 0; position: relative; background-color: rgb(166, 148, 124); visibility: visible; display: none; overflow: visible; top: 0; left: 0;">
             <ui:Button text=" " parse-escape-sequences="true" display-tooltip-when-elided="true" name="CloseStats" tabindex="1" style="background-image: resource(&apos;Images/menu/XIcon&apos;); background-color: rgba(188, 188, 188, 0); overflow: visible; width: 52px; height: 52px; border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
-            <ui:VisualElement name="elements" style="flex-grow: 0; background-color: rgba(45, 45, 45, 0); position: relative; top: 0; width: 100%; overflow: visible; height: 97%; align-self: auto; justify-content: flex-start; -unity-text-align: upper-left; flex-shrink: 0; align-items: stretch;">
-                <ui:VisualElement style="flex-grow: 0; width: 80%; height: 10%; position: relative; flex-direction: row; justify-content: space-around; align-items: center; align-self: flex-start; top: 30px;">
-                    <ui:VisualElement name="Image" class="tokenImg" style="width: 100px; height: 100px;" />
-                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="blackTokens" class="points" />
-                </ui:VisualElement>
-                <ui:VisualElement style="flex-grow: 0; width: 80%; height: 10%; position: relative; flex-direction: row; justify-content: space-around; align-items: center; align-self: flex-start; top: 30px;">
-                    <ui:VisualElement name="Image" class="tokenImg" style="flex-grow: 0; background-image: resource(&apos;Images/Tokens/RedTokenSprite&apos;); background-color: rgba(255, 255, 255, 0); width: 100px; height: 100px;" />
-                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="redTokens" class="points" />
-                </ui:VisualElement>
-                <ui:VisualElement style="flex-grow: 0; width: 80%; height: 10%; position: relative; flex-direction: row; justify-content: space-around; align-items: center; align-self: flex-start; top: 30px;">
+            <ui:VisualElement name="elements" style="flex-grow: 0; background-color: rgba(45, 45, 45, 0); position: relative; top: 0; width: 100%; overflow: visible; height: 95%; align-self: auto; justify-content: flex-start; -unity-text-align: upper-left; flex-shrink: 0; align-items: stretch; flex-direction: row; display: flex;">
+                <ui:VisualElement style="flex-grow: 0; flex-shrink: 0; width: 18%; align-items: center; justify-content: space-around; padding-top: 97px;">
+                    <ui:VisualElement name="Image" class="tokenImg" style="width: 80%; height: 13%;" />
+                    <ui:VisualElement name="Image" class="tokenImg" style="background-image: resource(&apos;Images/Tokens/RedTokenSprite&apos;);" />
                     <ui:VisualElement name="Image" class="tokenImg" style="background-image: resource(&apos;Images/Tokens/GreenTokenSprite&apos;);" />
-                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="greenTokens" class="points" />
-                </ui:VisualElement>
-                <ui:VisualElement style="flex-grow: 0; width: 80%; height: 10%; position: relative; flex-direction: row; justify-content: space-around; align-items: center; align-self: flex-start; top: 30px;">
                     <ui:VisualElement name="Image" class="tokenImg" style="background-image: resource(&apos;Images/Tokens/BlueTokenSprite&apos;);" />
-                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="blueTokens" class="points" />
-                </ui:VisualElement>
-                <ui:VisualElement style="flex-grow: 0; width: 80%; height: 10%; position: relative; flex-direction: row; justify-content: space-around; align-items: center; align-self: flex-start; top: 30px;">
                     <ui:VisualElement name="Image" class="tokenImg" style="flex-grow: 0; background-image: resource(&apos;Images/Tokens/WhiteTokenSprite&apos;); background-color: rgba(255, 255, 255, 0);" />
-                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="whiteTokens" class="points" />
-                </ui:VisualElement>
-                <ui:VisualElement style="flex-grow: 0; width: 80%; height: 10%; position: relative; flex-direction: row; justify-content: space-around; align-items: center; align-self: flex-start; top: 30px;">
                     <ui:VisualElement name="Image" class="tokenImg" style="flex-grow: 0; background-image: resource(&apos;Images/Tokens/GoldTokenSprite&apos;); background-color: rgba(255, 255, 255, 0);" />
-                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="goldTokens" class="points" />
+                    <ui:Label tabindex="-1" text="Punkty" parse-escape-sequences="true" display-tooltip-when-elided="true" class="points" style="margin-bottom: 17px;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="playerPoints" style="flex-grow: 1; height: 35%; position: absolute; width: 100%; bottom: 0; align-items: center; align-self: center; flex-direction: column;">
-                    <ui:VisualElement style="flex-grow: 1; width: 100%; height: 50%;">
-                        <ui:VisualElement name="player1Container" style="flex-grow: 1; height: 50%; width: 100%; justify-content: space-around; align-items: center; flex-direction: row;">
-                            <ui:Label tabindex="-1" text="Gracz 1" parse-escape-sequences="true" display-tooltip-when-elided="true" class="points" style="height: auto; width: auto;" />
-                            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player1" class="points" style="height: auto; width: auto;" />
-                        </ui:VisualElement>
-                        <ui:VisualElement name="player2Container" style="flex-grow: 1; height: 50%; width: 100%; justify-content: space-around; align-items: center; flex-direction: row;">
-                            <ui:Label tabindex="-1" text="Gracz 2" parse-escape-sequences="true" display-tooltip-when-elided="true" class="points" style="height: auto; width: auto;" />
-                            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player2" class="points" style="height: auto; width: auto;" />
-                        </ui:VisualElement>
-                    </ui:VisualElement>
-                    <ui:VisualElement style="flex-grow: 1; width: 100%; height: 50%;">
-                        <ui:VisualElement name="player3Container" style="flex-grow: 1; height: 50%; width: 100%; justify-content: space-around; align-items: center; flex-direction: row;">
-                            <ui:Label tabindex="-1" text="Gracz 3" parse-escape-sequences="true" display-tooltip-when-elided="true" class="points" style="height: auto; width: auto;" />
-                            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player3" class="points" style="height: auto; width: auto;" />
-                        </ui:VisualElement>
-                        <ui:VisualElement name="player4Container" style="flex-grow: 1; height: 50%; width: 100%; justify-content: space-around; align-items: center; flex-direction: row;">
-                            <ui:Label tabindex="-1" text="Gracz 4" parse-escape-sequences="true" display-tooltip-when-elided="true" class="points" style="height: auto; width: auto;" />
-                            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player4" class="points" style="height: auto; width: auto;" />
-                        </ui:VisualElement>
-                    </ui:VisualElement>
+                <ui:VisualElement name="player1Container" class="playerContainer" style="display: flex; padding-top: 0;">
+                    <ui:Label tabindex="-1" text="Gracz 1" parse-escape-sequences="true" display-tooltip-when-elided="true" class="points" style="height: auto; width: auto; align-self: auto; justify-content: flex-start;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player1Black" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player1Red" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player1Green" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player1Blue" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player1White" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player1Gold" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player1" class="points" style="bottom: 2.5%;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="player2Container" class="playerContainer">
+                    <ui:Label tabindex="-1" text="Gracz 2" parse-escape-sequences="true" display-tooltip-when-elided="true" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player2Black" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player2Red" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player2Green" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player2Blue" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player2White" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player2Gold" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player2" class="points" style="height: auto; width: auto; bottom: 2.5%;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="player3Container" class="playerContainer">
+                    <ui:Label tabindex="-1" text="Gracz 3" parse-escape-sequences="true" display-tooltip-when-elided="true" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player3Black" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player3Red" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player3Green" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player3Blue" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player3White" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player3Gold" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player3" class="points" style="height: auto; width: auto; bottom: 2.5%;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="player4Container" class="playerContainer">
+                    <ui:Label tabindex="-1" text="Gracz 4" parse-escape-sequences="true" display-tooltip-when-elided="true" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player4Black" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player4Red" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player4Green" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player4Blue" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player4White" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player4Gold" class="points" style="height: auto; width: auto;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="player4" class="points" style="height: auto; width: auto; justify-content: flex-start; bottom: 2.5%;" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

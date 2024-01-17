@@ -6,7 +6,6 @@ Library: C:\Users\ksurd\Desktop\Dev\UNITY\Temp\BurstOutput\Data\Plugins\x86_64\l
 --meta-data-generation=False
 --dump=Function
 --float-precision=Standard
---target-framework=NetFramework
 --assembly-defines=UnityEngine;
 --assembly-defines=Assembly-CSharp;
 --assembly-defines=Unity.2D.IK.Runtime;
@@ -54,7 +53,7 @@ Library: C:\Users\ksurd\Desktop\Dev\UNITY\Temp\BurstOutput\Data\Plugins\x86_64\l
 --linker-options=PdbAltPath="Splendor_Data/Plugins/x86_64/lib_burst_generated.pdb"
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=C:\Users\ksurd\Desktop\Dev\UNITY\Temp\Burst
---key-folder=C:/Program Files/Unity/Hub/Editor/2022.3.11f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
+--key-folder=C:/Program Files/Unity/Hub/Editor/2022.3.6f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
 --decode-folder=C:\Users\ksurd\Desktop\Dev\UNITY\Library\Burst
 --output=C:\Users\ksurd\Desktop\Dev\UNITY\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
@@ -97,7 +96,6 @@ Library: C:\Users\ksurd\Desktop\Dev\UNITY\Temp\BurstOutput\Data\Plugins\x86_64\l
 --meta-data-generation=False
 --dump=Function
 --float-precision=Standard
---target-framework=NetFramework
 --assembly-defines=UnityEngine;
 --assembly-defines=Assembly-CSharp;
 --assembly-defines=Unity.2D.IK.Runtime;
@@ -145,7 +143,7 @@ Library: C:\Users\ksurd\Desktop\Dev\UNITY\Temp\BurstOutput\Data\Plugins\x86_64\l
 --linker-options=PdbAltPath="Splendor_Data/Plugins/x86_64/lib_burst_generated.pdb"
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=C:\Users\ksurd\Desktop\Dev\UNITY\Temp\Burst
---key-folder=C:/Program Files/Unity/Hub/Editor/2022.3.11f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
+--key-folder=C:/Program Files/Unity/Hub/Editor/2022.3.6f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
 --decode-folder=C:\Users\ksurd\Desktop\Dev\UNITY\Library\Burst
 --output=C:\Users\ksurd\Desktop\Dev\UNITY\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
