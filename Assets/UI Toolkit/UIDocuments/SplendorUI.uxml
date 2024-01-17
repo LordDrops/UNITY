@@ -7,8 +7,8 @@
         <ui:VisualElement name="ContentContainer" style="flex-grow: 1; flex-direction: row;">
             <ui:VisualElement name="ButtonsContent" style="flex-grow: 1; height: auto; width: auto; position: relative; top: auto; left: auto; opacity: 1; visibility: visible; background-color: rgba(255, 255, 255, 0); justify-content: center; align-items: center;">
                 <ui:VisualElement name="Credits" style="flex-grow: 0; flex-shrink: 0; background-image: resource(&apos;Images/menu/sign2&apos;); width: 75%; height: 75%; display: none; visibility: visible; overflow: visible; justify-content: space-around; align-items: center; -unity-background-image-tint-color: rgb(255, 255, 255); background-color: rgba(255, 255, 255, 0); -unity-text-align: upper-left; padding-top: 30px; padding-bottom: 45px;">
-                    <ui:Label tabindex="-1" text="Projekt autorstwa:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" class="author" style="font-size: 28px; justify-content: flex-start; align-items: stretch; flex-direction: column;" />
-                    <ui:VisualElement style="flex-grow: 0; flex-shrink: 0; justify-content: center; align-items: center;">
+                    <ui:Label tabindex="-1" text="Projekt autorstwa:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" class="author" style="font-size: 48px; justify-content: flex-start; align-items: stretch; flex-direction: column;" />
+                    <ui:VisualElement style="flex-grow: 0; flex-shrink: 0; justify-content: center; align-items: center; padding-bottom: 44px;">
                         <ui:Label tabindex="-1" text="Maksymilian Zawadka - 190745" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" class="author" />
                         <ui:Label tabindex="-1" text="Mateusz Dropek - 190635" parse-escape-sequences="true" display-tooltip-when-elided="true" class="author" />
                         <ui:Label tabindex="-1" text="Daniel FieCko - 190681" parse-escape-sequences="true" display-tooltip-when-elided="true" class="author" />
@@ -17,8 +17,8 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="PlayOptions" style="flex-grow: 0; flex-shrink: 0; background-image: resource(&apos;Images/menu/sign2&apos;); width: 75%; height: 75%; display: none; visibility: visible; overflow: visible; justify-content: space-around; align-items: center; -unity-background-image-tint-color: rgb(255, 255, 255); background-color: rgba(255, 255, 255, 0); -unity-text-align: upper-left; padding-top: 30px; padding-bottom: 45px;">
-                    <ui:Label tabindex="-1" text="Ilosc graczy" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Players" class="author" style="font-size: 32px; justify-content: flex-start; align-items: stretch; flex-direction: column;" />
-                    <ui:VisualElement style="flex-grow: 0; flex-shrink: 0; justify-content: flex-end; align-items: stretch; padding-top: 0; padding-bottom: 76px; flex-direction: row; align-self: auto;">
+                    <ui:Label tabindex="-1" text="Ilosc graczy" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Players" class="author" style="font-size: 48px; justify-content: flex-start; align-items: stretch; flex-direction: column;" />
+                    <ui:VisualElement style="flex-grow: 0; flex-shrink: 0; justify-content: flex-end; align-items: stretch; padding-top: 0; padding-bottom: 39px; flex-direction: column; align-self: auto;">
                         <ui:Button text="2 graczy" parse-escape-sequences="true" display-tooltip-when-elided="true" name="2PlayersBtn" class="playersBtn" />
                         <ui:Button text="3  graczy" parse-escape-sequences="true" display-tooltip-when-elided="true" name="3PlayersBtn" class="playersBtn" />
                         <ui:Button text="4 graczy" parse-escape-sequences="true" display-tooltip-when-elided="true" name="4PlayersBtn" class="playersBtn" />
@@ -26,9 +26,9 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Buttons" style="flex-grow: 0; background-color: rgba(162, 162, 162, 0); align-items: stretch; justify-content: center; flex-direction: column; opacity: 1; display: flex; visibility: visible; overflow: visible; position: relative; height: auto; top: auto; width: 30%; left: auto; -unity-text-align: upper-center; text-overflow: clip; -unity-font: resource(&apos;Images/menu/taskes&apos;); transition-duration: 1s; right: auto; flex-shrink: 0;">
-                <ui:Button text="Graj" parse-escape-sequences="true" display-tooltip-when-elided="true" name="PlayButton" class="mainBtn" style="border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); background-color: rgba(188, 188, 188, 0); font-size: 15%;" />
-                <ui:Button text="Autorzy" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CreditsButton" class="mainBtn" style="border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); background-color: rgba(188, 188, 188, 0); font-size: 15%;" />
-                <ui:Button text="Zamknij" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ExitButton" class="mainBtn" style="border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); background-color: rgba(188, 188, 188, 0); font-size: 15%;" />
+                <ui:Button text="Graj" parse-escape-sequences="true" display-tooltip-when-elided="true" name="PlayButton" class="mainBtn" style="border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); background-color: rgba(188, 188, 188, 0); font-size: 28px;" />
+                <ui:Button text="Autorzy" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CreditsButton" class="mainBtn" style="border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); background-color: rgba(188, 188, 188, 0); font-size: 20px;" />
+                <ui:Button text="Zamknij" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ExitButton" class="mainBtn" style="border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); background-color: rgba(188, 188, 188, 0); font-size: 20px;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
