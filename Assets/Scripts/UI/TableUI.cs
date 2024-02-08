@@ -13,7 +13,6 @@ public class TableUI : MonoBehaviour
     private Button showStatsBtn;
     private Button hideStatsBtn;
 
-
     private VisualElement pauseMenu;
     private Button resumeBtn;
     private Button tutorialBtn;
@@ -36,31 +35,34 @@ public class TableUI : MonoBehaviour
     private TextElement player2BlackTokens;
     private TextElement player3BlackTokens;
     private TextElement player4BlackTokens;
-    
+
     private TextElement player1RedTokens;
     private TextElement player2RedTokens;
     private TextElement player3RedTokens;
     private TextElement player4RedTokens;
-    
+
     private TextElement player1GreenTokens;
     private TextElement player2GreenTokens;
     private TextElement player3GreenTokens;
     private TextElement player4GreenTokens;
-    
+
     private TextElement player1BlueTokens;
     private TextElement player2BlueTokens;
     private TextElement player3BlueTokens;
     private TextElement player4BlueTokens;
-    
+
     private TextElement player1WhiteTokens;
     private TextElement player2WhiteTokens;
     private TextElement player3WhiteTokens;
     private TextElement player4WhiteTokens;
-    
+
     private TextElement player1GoldTokens;
     private TextElement player2GoldTokens;
     private TextElement player3GoldTokens;
     private TextElement player4GoldTokens;
+
+    private VisualElement endTurn;
+    private Button nextTurn;
 
 
 
@@ -70,7 +72,7 @@ public class TableUI : MonoBehaviour
 
     void OnEnable()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();  
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         var uiDocument = GetComponent<UIDocument>();
 
@@ -83,14 +85,14 @@ public class TableUI : MonoBehaviour
         showStatsBtn = uiDocument.rootVisualElement.Q("StatsButton") as Button;
         hideStatsBtn = uiDocument.rootVisualElement.Q("CloseStats") as Button;
 
-        player1Points = uiDocument.rootVisualElement.Q("player1")as TextElement;
+        player1Points = uiDocument.rootVisualElement.Q("player1") as TextElement;
         player1BlackTokens = uiDocument.rootVisualElement.Q("player1Black") as TextElement;
         player1RedTokens = uiDocument.rootVisualElement.Q("player1Red") as TextElement;
         player1GreenTokens = uiDocument.rootVisualElement.Q("player1Green") as TextElement;
         player1BlueTokens = uiDocument.rootVisualElement.Q("player1Blue") as TextElement;
         player1WhiteTokens = uiDocument.rootVisualElement.Q("player1White") as TextElement;
         player1GoldTokens = uiDocument.rootVisualElement.Q("player1Gold") as TextElement;
-        
+
         player2Points = uiDocument.rootVisualElement.Q("player2") as TextElement;
         player2BlackTokens = uiDocument.rootVisualElement.Q("player2Black") as TextElement;
         player2RedTokens = uiDocument.rootVisualElement.Q("player2Red") as TextElement;
@@ -107,7 +109,7 @@ public class TableUI : MonoBehaviour
         player3BlueTokens = uiDocument.rootVisualElement.Q("player3Blue") as TextElement;
         player3WhiteTokens = uiDocument.rootVisualElement.Q("player3White") as TextElement;
         player3GoldTokens = uiDocument.rootVisualElement.Q("player3Gold") as TextElement;
-        
+
         player4Container = uiDocument.rootVisualElement.Q("player4Container");
         player4Points = uiDocument.rootVisualElement.Q("player4") as TextElement;
         player4BlackTokens = uiDocument.rootVisualElement.Q("player4Black") as TextElement;
@@ -124,14 +126,19 @@ public class TableUI : MonoBehaviour
 
         tutorial = uiDocument.rootVisualElement.Q("TutorialLayer");
 
+        endTurn = uiDocument.rootVisualElement.Q("EndTurn");
+        nextTurn = uiDocument.rootVisualElement.Q("NextTurn") as Button;
+
         showStatsBtn.RegisterCallback<ClickEvent>(ShowStatsBar);
         hideStatsBtn.RegisterCallback<ClickEvent>(CloseStatsBar);
 
         nextPlayerLayer.RegisterCallback<MouseEnterEvent>(OnMouseOverUI);
         stats.RegisterCallback<MouseEnterEvent>(OnMouseOverUI);
+        endTurn.RegisterCallback<MouseEnterEvent>(OnMouseOverUI);
 
         nextPlayerLayer.RegisterCallback<MouseLeaveEvent>(OnMouseNotOverUI);
         stats.RegisterCallback<MouseLeaveEvent>(OnMouseNotOverUI);
+        endTurn.RegisterCallback<MouseLeaveEvent>(OnMouseNotOverUI);
 
         resumeBtn.RegisterCallback<ClickEvent>(TogglePauseMenu);
         tutorialBtn.RegisterCallback<ClickEvent>(ShowTutorial);
@@ -140,17 +147,19 @@ public class TableUI : MonoBehaviour
         gameOver.RegisterCallback<ClickEvent>(LoadInitScene);
 
         tutorial.RegisterCallback<ClickEvent>(HideTutorial);
+
+        endTurn.RegisterCallback<ClickEvent>(EndTurn);
     }
 
     public void RenderPlayerScore(int playersAmount)
     {
-        if(playersAmount == 2)
+        if (playersAmount == 2)
         {
             player3Container.style.display = DisplayStyle.None;
             player4Container.style.display = DisplayStyle.None;
             playerPoints.Add(player1Points);
             playerPoints.Add(player2Points);
-        } else if(playersAmount == 3)
+        } else if (playersAmount == 3)
         {
             player4Container.style.display = DisplayStyle.None;
             playerPoints.Add(player1Points);
@@ -169,11 +178,16 @@ public class TableUI : MonoBehaviour
     {
         int i = 0;
 
-        foreach(var player in gameManager.GetPlayers())
+        foreach (var player in gameManager.GetPlayers())
         {
             playerPoints[i].text = player.points.ToString();
             i++;
         }
+    }
+
+    public bool IsStatsBarVisible()
+    {
+        return stats.style.display == DisplayStyle.None ? false : true;
     }
 
     private void UpdatePlayersTokens()
@@ -194,7 +208,7 @@ public class TableUI : MonoBehaviour
         player2WhiteTokens.text = (players[1].whiteToken + players[1].whiteTokenPermanent).ToString();
         player2GoldTokens.text = (players[1].goldToken).ToString();
 
-        if(players.Count > 2)
+        if (players.Count > 2)
         {
             player3BlackTokens.text = (players[2].blackToken + players[2].blackTokenPermanent).ToString();
             player3RedTokens.text = (players[2].redToken + players[2].redTokenPermanent).ToString();
@@ -204,7 +218,7 @@ public class TableUI : MonoBehaviour
             player3GoldTokens.text = (players[2].goldToken).ToString();
         }
 
-        if(players.Count > 3) 
+        if (players.Count > 3)
         {
             player4BlackTokens.text = (players[3].blackToken + players[3].blackTokenPermanent).ToString();
             player4RedTokens.text = (players[3].redToken + players[3].redTokenPermanent).ToString();
@@ -217,20 +231,22 @@ public class TableUI : MonoBehaviour
 
     private void ShowStatsBar(ClickEvent _)
     {
+        if (gameManager.isOverUI) return;
+
         stats.style.display = DisplayStyle.Flex;
         UpdatePlayersTokens();
         UpdatePlayersPoints();
         gameManager.isOverUI = true;
     }
 
-    private void CloseStatsBar(ClickEvent _)
+    public void CloseStatsBar(ClickEvent _ = null)
     {
         stats.style.display = DisplayStyle.None;
         gameManager.isOverUI = false;
     }
 
     IEnumerator AddClickCallbackAfterDelay()
-    { 
+    {
         yield return new WaitForSeconds(2);
         nextPlayerLayer.RegisterCallback<ClickEvent>(OnNextPlayerClick);
     }
@@ -244,22 +260,22 @@ public class TableUI : MonoBehaviour
 
     private void OnNextPlayerClick(ClickEvent evt)
     {
-            nextPlayerLayer.style.display = DisplayStyle.None;
-            nextPlayerLayer.UnregisterCallback<ClickEvent>(OnNextPlayerClick);
-            return;
+        nextPlayerLayer.style.display = DisplayStyle.None;
+        nextPlayerLayer.UnregisterCallback<ClickEvent>(OnNextPlayerClick);
+        return;
     }
 
     private void OnMouseOverUI(MouseEnterEvent evt)
     {
-        if(evt.target == nextPlayerLayer || evt.target == stats)
+        if (evt.target == nextPlayerLayer || evt.target == stats || evt.target == endTurn)
         {
             gameManager.isOverUI = true;
         }
     }
-    
+
     private void OnMouseNotOverUI(MouseLeaveEvent evt)
     {
-        if(evt.target == nextPlayerLayer)
+        if (evt.target == nextPlayerLayer || evt.target == endTurn)
         {
             gameManager.isOverUI = false;
         }
@@ -267,11 +283,11 @@ public class TableUI : MonoBehaviour
 
     public void TogglePauseMenu(ClickEvent _ = null)
     {
-        if(pauseMenu.style.display == DisplayStyle.None)
+        if (pauseMenu.style.display == DisplayStyle.None)
         {
             gameManager.isOverUI = true;
             pauseMenu.style.display = DisplayStyle.Flex;
-        } 
+        }
         else
         {
             gameManager.isOverUI = false;
@@ -285,7 +301,7 @@ public class TableUI : MonoBehaviour
     }
 
     private void HideTutorial(ClickEvent _)
-    { 
+    {
         tutorial.style.display = DisplayStyle.None;
     }
 
@@ -302,5 +318,20 @@ public class TableUI : MonoBehaviour
         nextPlayerLayer.style.display = DisplayStyle.Flex;
         nextPlayerName.text = message;
         gameOver.style.display = DisplayStyle.Flex;
+    }
+
+    public void ShowEndTurnPop()
+    {
+        endTurn.style.display = DisplayStyle.Flex;
+    }
+    public void CloseEndTurnPop()
+    {
+        endTurn.style.display = DisplayStyle.None;
+    }
+
+    private void EndTurn(ClickEvent _)
+    {
+        CloseEndTurnPop();
+        gameManager.ChangePlayer();
     }
 }   

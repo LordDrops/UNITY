@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -83,9 +85,15 @@ public class Player : MonoBehaviour
 
     public void EndTurn()
     {
-        gameManager.ChangePlayer();
+        StartCoroutine(ChangePlayerDelay());   
     }
 
+    IEnumerator ChangePlayerDelay()
+    {
+        yield return new WaitForSeconds(3);
+
+        gameManager.ChangePlayer();
+    }
     public void ReturnToken(string token)
     {
         switch (token)

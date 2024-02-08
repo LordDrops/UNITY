@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class InputHandler : MonoBehaviour
 {
@@ -51,6 +52,9 @@ public class InputHandler : MonoBehaviour
         {
             card.GetComponent<Card>().HideActionsLayer();
         }
+
+        zoomCard.HideActionsLayer();
+        tableUI.CloseEndTurnPop();
     }
 
     private void LiftCard(Card card)
@@ -62,6 +66,11 @@ public class InputHandler : MonoBehaviour
     {
         if (!context.started) return;
 
+        if (tableUI.IsStatsBarVisible())
+        {
+            tableUI.CloseStatsBar();
+            return;
+        }
         tableUI.TogglePauseMenu();
     }
 
@@ -88,9 +97,9 @@ public class InputHandler : MonoBehaviour
         
         if(tag == "EndTurn")
         {
-            player.EndTurn();
-
             HideLayers();
+
+            tableUI.ShowEndTurnPop();
 
             zoomCard.HideCard();
 
@@ -194,6 +203,9 @@ public class InputHandler : MonoBehaviour
         }
         else if (tag == "Zoom card")
         {
+            Card clickedCard = rayHit.collider.GetComponent<Card>();
+
+            clickedCard.ToggleActions();
             return;
         }
         else if (tag != "Untagged" && player.CanTakeToken())
