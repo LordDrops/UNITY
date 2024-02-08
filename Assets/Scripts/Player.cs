@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
@@ -35,7 +34,6 @@ public class Player : MonoBehaviour
     public int greenTokenPermanent;
 
     public int moves;
-
 
     public GameObject tokenPrefab;
     public GameObject cardPrefab;
